@@ -1,0 +1,36 @@
+name: Update problem
+description: Report a built-in updater issue
+title: "[Update] "
+labels:
+  - updater
+body:
+  - type: input
+    id: current_version
+    attributes:
+      label: Current installed version
+      placeholder: 0.1.0
+  - type: input
+    id: target_version
+    attributes:
+      label: Version you expected
+      placeholder: 0.1.1
+  - type: input
+    id: macos_version
+    attributes:
+      label: macOS version
+      placeholder: macOS 14.6
+  - type: textarea
+    id: problem
+    attributes:
+      label: What happened
+      description: Describe the updater problem.
+    validations:
+      required: true
+  - type: textarea
+    id: message
+    attributes:
+      label: Updater message
+  - type: textarea
+    id: attachments
+    attributes:
+      label: Screenshots or logs

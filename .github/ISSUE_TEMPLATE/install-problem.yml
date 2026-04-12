@@ -1,0 +1,32 @@
+name: Install problem
+description: Report a download, install, launch, or security warning problem
+title: "[Install] "
+labels:
+  - install
+body:
+  - type: input
+    id: snapdraft_version
+    attributes:
+      label: Snapdraft version
+      placeholder: 0.1.0
+  - type: input
+    id: macos_version
+    attributes:
+      label: macOS version
+      placeholder: macOS 14.6
+  - type: textarea
+    id: problem
+    attributes:
+      label: What failed
+      description: Describe the install or launch problem.
+    validations:
+      required: true
+  - type: textarea
+    id: message
+    attributes:
+      label: Exact message shown
+      description: Paste the exact warning or error if possible.
+  - type: textarea
+    id: attachments
+    attributes:
+      label: Screenshots
