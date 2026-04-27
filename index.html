@@ -3,135 +3,1605 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Snapdraft</title>
+    <title>Snapdraft — Polish messages without leaving the app you’re in</title>
+    <meta name="description" content="Snapdraft is a local-first macOS drafting overlay. Draft, rewrite, and dictate on top of Slack, Gmail, WhatsApp, Zoom, and any other Mac app — without switching to a separate AI chat.">
+    <meta name="theme-color" content="#faf6ee" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#14110d" media="(prefers-color-scheme: dark)">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Snapdraft — Polish messages without leaving the app you’re in">
+    <meta property="og:description" content="A local-first macOS drafting overlay. Draft, rewrite, and dictate on top of any Mac app — Slack, Gmail, WhatsApp, Zoom, and more.">
+    <meta property="og:url" content="https://ranyitz.github.io/snapdraft/">
+    <meta property="og:image" content="https://ranyitz.github.io/snapdraft/assets/snapdraft-compose-preview.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="icon" type="image/png" href="assets/snapdraft-icon.png">
+    <link rel="apple-touch-icon" href="assets/snapdraft-icon.png">
     <style>
       :root {
         color-scheme: light dark;
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-        line-height: 1.55;
+        --bg: #faf6ee;
+        --bg-elev: #ffffff;
+        --bg-soft: #f1ead9;
+        --text: #1a1614;
+        --text-muted: #6b6258;
+        --border: #e6ddc8;
+        --accent: #2768e8;
+        --accent-2: #b86b4a;
+        --accent-contrast: #ffffff;
+        --shadow: 0 1px 2px rgb(75 55 30 / 5%), 0 8px 24px rgb(75 55 30 / 8%);
+      }
+
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg: #14110d;
+          --bg-elev: #1d1813;
+          --bg-soft: #251f17;
+          --text: #f5ecdc;
+          --text-muted: #a39786;
+          --border: #322a1f;
+          --accent: #6aa8ff;
+          --accent-2: #e8a07d;
+          --accent-contrast: #14110d;
+          --shadow: 0 1px 2px rgb(0 0 0 / 50%), 0 8px 24px rgb(0 0 0 / 45%);
+        }
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
       }
 
       body {
         margin: 0;
-        color: #1d1d1f;
-        background: #fbfbfd;
-      }
-
-      main {
-        width: min(760px, calc(100% - 40px));
-        margin: 0 auto;
-        padding: 64px 0;
-      }
-
-      h1 {
-        margin: 0 0 12px;
-        font-size: clamp(2.25rem, 7vw, 4.25rem);
-        line-height: 1;
-        letter-spacing: 0;
-      }
-
-      h2 {
-        margin-top: 40px;
-        font-size: 1.35rem;
-        letter-spacing: 0;
-      }
-
-      p,
-      li {
-        font-size: 1rem;
+        font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, sans-serif;
+        font-size: 17px;
+        line-height: 1.55;
+        color: var(--text);
+        background: var(--bg);
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
       }
 
       a {
-        color: #0066cc;
+        color: var(--accent);
+        text-decoration: none;
+      }
+
+      a:hover {
+        text-decoration: underline;
+      }
+
+      a:focus-visible,
+      button:focus-visible,
+      .button:focus-visible {
+        outline: 2px solid var(--accent);
+        outline-offset: 3px;
+        border-radius: 6px;
+      }
+
+      .container {
+        width: min(1080px, calc(100% - 40px));
+        margin: 0 auto;
+      }
+
+      /* Header */
+      header.site {
+        position: relative;
+        z-index: 10;
+        background: var(--bg);
+        border-bottom: 1px solid var(--border);
+      }
+
+      .nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 56px;
+      }
+
+      .brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        color: var(--text);
+        font-weight: 600;
+        letter-spacing: -0.01em;
+      }
+
+      .brand:hover {
+        text-decoration: none;
+      }
+
+      .brand .mark {
+        width: 36px;
+        height: 36px;
+        display: block;
+        object-fit: contain;
+      }
+
+      .nav-links {
+        display: flex;
+        align-items: center;
+        gap: 24px;
+      }
+
+      .nav-links a {
+        color: var(--text-muted);
+        font-size: 14px;
+      }
+
+      .nav-links a:hover {
+        color: var(--text);
+        text-decoration: none;
+      }
+
+      .nav-cta {
+        display: inline-flex;
+        align-items: center;
+        height: 32px;
+        padding: 0 14px;
+        border-radius: 16px;
+        background: var(--accent);
+        color: var(--accent-contrast) !important;
+        font-size: 14px;
+        font-weight: 600;
+      }
+
+      .nav-cta:hover {
+        text-decoration: none;
+        opacity: 0.92;
+      }
+
+      @media (max-width: 640px) {
+        .nav-links a:not(.nav-cta) {
+          display: none;
+        }
+      }
+
+      /* Buttons */
+      .button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 44px;
+        padding: 0 20px;
+        border: 1px solid var(--accent);
+        border-radius: 10px;
+        background: var(--accent);
+        color: var(--accent-contrast);
+        font-weight: 600;
+        font-size: 15px;
+        text-decoration: none;
+        transition: transform 0.08s ease, opacity 0.15s ease;
+      }
+
+      .button:hover {
+        text-decoration: none;
+        opacity: 0.92;
+      }
+
+      .button:active {
+        transform: translateY(1px);
+      }
+
+      .button.secondary {
+        background: transparent;
+        color: var(--accent);
+      }
+
+      .button.ghost {
+        background: var(--bg-soft);
+        border-color: var(--border);
+        color: var(--text);
+      }
+
+      /* Hero */
+      .hero {
+        padding: 36px 0 48px;
+        text-align: center;
+      }
+
+      h1 {
+        margin: 0 0 22px;
+        font-size: clamp(2.6rem, 8.4vw, 5.5rem);
+        line-height: 1;
+        letter-spacing: -0.035em;
+        font-weight: 800;
+      }
+
+      .hl-grad {
+        background: linear-gradient(
+          100deg,
+          #2768e8 0%,
+          #6a52d6 30%,
+          #c97a4f 52%,
+          #6a52d6 72%,
+          #2768e8 100%
+        );
+        background-size: 220% 100%;
+        -webkit-background-clip: text;
+                background-clip: text;
+        color: transparent;
+        animation: hl-shift 9s ease-in-out infinite;
+      }
+
+      @keyframes hl-shift {
+        0%, 100% { background-position: 0% 50%; }
+        50%      { background-position: 100% 50%; }
+      }
+
+      .lede {
+        max-width: 720px;
+        margin: 0 auto;
+        font-size: clamp(1.1rem, 1.8vw, 1.32rem);
+        color: var(--text-muted);
+        line-height: 1.5;
       }
 
       .actions {
         display: flex;
         flex-wrap: wrap;
         gap: 12px;
-        margin: 28px 0 32px;
+        justify-content: center;
+        margin: 28px 0 12px;
       }
 
-      .button {
-        display: inline-flex;
-        align-items: center;
-        min-height: 42px;
-        padding: 0 16px;
-        border: 1px solid #0066cc;
-        border-radius: 6px;
-        background: #0066cc;
-        color: #fff;
-        font-weight: 600;
-        text-decoration: none;
+      .meta {
+        margin: 4px 0 0;
+        font-size: 13px;
+        color: var(--text-muted);
       }
 
-      .button.secondary {
-        background: transparent;
-        color: #0066cc;
-      }
-
-      code {
-        overflow-wrap: anywhere;
+      .hero-image-wrap {
+        margin: 64px auto 0;
+        perspective: 2200px;
       }
 
       .hero-image {
         display: block;
-        width: min(calc(100vw - 40px), 1040px);
-        max-width: none;
+        width: 100%;
+        max-width: 1180px;
         height: auto;
-        transform: translateX(-50%);
-        margin: 0 auto 44px;
-        margin-left: 50%;
+        margin: 0 auto;
+        border-radius: 18px;
+        border: 1px solid var(--border);
+        background: var(--bg-elev);
+        box-shadow:
+          0 1px 0 rgb(255 255 255 / 8%) inset,
+          0 30px 80px rgb(0 0 0 / 22%),
+          0 8px 16px rgb(0 0 0 / 10%);
+        transform: rotateX(8deg);
+        transform-origin: center top;
+        transition:
+          transform 0.8s cubic-bezier(0.2, 0.7, 0, 1),
+          box-shadow 0.4s ease;
+      }
+
+      .hero-image-wrap:hover .hero-image {
+        transform: rotateX(2deg) translateY(-6px);
+        box-shadow:
+          0 1px 0 rgb(255 255 255 / 10%) inset,
+          0 36px 90px rgb(0 0 0 / 26%),
+          0 10px 20px rgb(0 0 0 / 12%);
+      }
+
+      /* Sections */
+      section {
+        padding: 72px 0;
+        border-top: 1px solid var(--border);
+      }
+
+      section.flush {
+        border-top: 0;
+      }
+
+      .section-head {
+        max-width: 760px;
+        margin: 0 auto 56px;
+        text-align: center;
+      }
+
+      .section-head h2 {
+        margin: 0 0 14px;
+        font-size: clamp(2rem, 4.6vw, 3rem);
+        line-height: 1.05;
+        letter-spacing: -0.025em;
+        font-weight: 800;
+      }
+
+      .section-head p {
+        margin: 0;
+        color: var(--text-muted);
+        font-size: clamp(1.02rem, 1.4vw, 1.15rem);
+      }
+
+      .section-head--eyebrow-only {
+        margin-bottom: 32px;
+      }
+
+      .section-head--eyebrow-only .section-eyebrow {
+        margin-bottom: 0;
+      }
+
+      /* Editorial section eyebrow (01 — Title) */
+      .section-eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+        font-size: 11px;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        font-weight: 700;
+        color: var(--accent);
+        margin-bottom: 18px;
+      }
+
+      .section-eyebrow .num {
+        color: var(--text-muted);
+        font-variant-numeric: tabular-nums;
+        position: relative;
+        padding-right: 16px;
+      }
+
+      .section-eyebrow .num::after {
+        content: "";
+        position: absolute;
+        right: 4px;
+        top: 50%;
+        width: 6px;
+        height: 1px;
+        background: var(--text-muted);
+      }
+
+      /* Why — editorial split */
+      .why-layout {
+        display: grid;
+        grid-template-columns: minmax(280px, 360px) 1fr;
+        gap: 56px 96px;
+        align-items: start;
+      }
+
+      .why-intro {
+        text-align: left;
+        position: sticky;
+        top: 32px;
+      }
+
+      .why-intro h2 {
+        margin: 0 0 18px;
+        font-size: clamp(2rem, 4.4vw, 3rem);
+        line-height: 1.05;
+        letter-spacing: -0.025em;
+        font-weight: 800;
+      }
+
+      .why-intro p {
+        margin: 0;
+        color: var(--text-muted);
+        font-size: 1.05rem;
+      }
+
+      .why-list {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0;
+      }
+
+      .why-list li {
+        padding: 28px 24px 28px 0;
+        border-top: 1px solid var(--border);
+        position: relative;
+      }
+
+      .why-list li:nth-child(2n) {
+        padding-left: 24px;
+        padding-right: 0;
+      }
+
+      .why-num {
+        display: block;
+        font-size: 11px;
+        letter-spacing: 0.16em;
+        font-weight: 700;
+        color: var(--accent);
+        margin-bottom: 10px;
+        font-variant-numeric: tabular-nums;
+      }
+
+      .why-list h3 {
+        margin: 0 0 8px;
+        font-size: 1.18rem;
+        line-height: 1.25;
+        font-weight: 700;
+        letter-spacing: -0.005em;
+      }
+
+      .why-list p {
+        margin: 0;
+        font-size: 0.97rem;
+        color: var(--text-muted);
+      }
+
+      @media (max-width: 880px) {
+        .why-layout { grid-template-columns: 1fr; gap: 40px; }
+        .why-intro { position: static; }
+        .why-list { grid-template-columns: 1fr; }
+        .why-list li,
+        .why-list li:nth-child(2n) {
+          padding: 22px 0;
+        }
+      }
+
+      /* How — tinted band with horizontal stepper */
+      .section-how {
+        background: var(--bg-soft);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .section-how::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-image: radial-gradient(
+          circle at 1px 1px,
+          color-mix(in srgb, var(--text) 6%, transparent) 1px,
+          transparent 1.5px
+        );
+        background-size: 28px 28px;
+        opacity: 0.7;
+        pointer-events: none;
+      }
+
+      .section-how > .container {
+        position: relative;
+        z-index: 1;
+      }
+
+      .flow {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        position: relative;
+      }
+
+      .flow::before {
+        content: "";
+        position: absolute;
+        top: 30px;
+        left: 12.5%;
+        right: 12.5%;
+        height: 2px;
+        background: repeating-linear-gradient(
+          to right,
+          color-mix(in srgb, var(--accent) 35%, transparent) 0 6px,
+          transparent 6px 14px
+        );
+        z-index: 0;
+      }
+
+      .flow-step {
+        position: relative;
+        text-align: center;
+        padding: 0 14px;
+        z-index: 1;
+      }
+
+      .flow-num {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        background: var(--bg);
+        border: 1px solid var(--border);
+        margin: 0 auto 22px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 22px;
+        font-weight: 800;
+        color: var(--accent);
+        box-shadow: 0 8px 24px rgb(75 55 30 / 8%);
+        font-feature-settings: "tnum";
+        transition: transform 0.3s ease;
+      }
+
+      .flow-step:hover .flow-num {
+        transform: translateY(-3px);
+      }
+
+      .flow-step h3 {
+        margin: 0 0 8px;
+        font-size: 1.12rem;
+        font-weight: 700;
+      }
+
+      .flow-step > p {
+        margin: 0 auto;
+        max-width: 220px;
+        color: var(--text-muted);
+        font-size: 0.95rem;
+      }
+
+      .flow-step .keys {
+        margin-top: 14px;
+        max-width: none;
+      }
+
+      @media (max-width: 760px) {
+        .flow {
+          grid-template-columns: 1fr;
+          gap: 8px;
+        }
+        .flow::before { display: none; }
+        .flow-step {
+          padding: 8px 0;
+          text-align: left;
+          display: grid;
+          grid-template-columns: 60px 1fr;
+          column-gap: 18px;
+          row-gap: 4px;
+        }
+        .flow-num { margin: 0; grid-row: span 3; }
+        .flow-step > p { margin: 0; max-width: none; }
+        .flow-step .keys { margin-top: 6px; }
+      }
+
+      /* Privacy — bold typographic block */
+      .privacy-block {
+        position: relative;
+        padding: clamp(36px, 6vw, 72px);
+        border-radius: 22px;
+        background:
+          linear-gradient(
+            135deg,
+            color-mix(in srgb, var(--accent) 5%, var(--bg-elev)),
+            var(--bg-elev)
+          );
+        border: 1px solid var(--border);
+        overflow: hidden;
+      }
+
+      .privacy-block::before {
+        content: "";
+        position: absolute;
+        right: -120px;
+        bottom: -120px;
+        width: 460px;
+        height: 460px;
+        background:
+          radial-gradient(circle, color-mix(in srgb, var(--accent) 22%, transparent), transparent 70%);
+        border-radius: 50%;
+        pointer-events: none;
+      }
+
+      .privacy-block::after {
+        content: "";
+        position: absolute;
+        left: -80px;
+        top: -80px;
+        width: 280px;
+        height: 280px;
+        background:
+          radial-gradient(circle, color-mix(in srgb, var(--accent-2) 16%, transparent), transparent 70%);
+        border-radius: 50%;
+        pointer-events: none;
+      }
+
+      .privacy-block > * {
+        position: relative;
+        z-index: 1;
+      }
+
+      .privacy-block h2 {
+        font-size: clamp(2.4rem, 6.4vw, 4.6rem);
+        line-height: 1;
+        letter-spacing: -0.035em;
+        font-weight: 800;
+        margin: 0 0 22px;
+        max-width: 16ch;
+      }
+
+      .privacy-lede {
+        max-width: 600px;
+        margin: 0 0 28px;
+        color: var(--text-muted);
+        font-size: clamp(1.05rem, 1.6vw, 1.2rem);
+      }
+
+      .privacy-list {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 4px 36px;
+        max-width: 760px;
+      }
+
+      .privacy-list li {
+        position: relative;
+        padding: 10px 0 10px 30px;
+        font-size: 0.98rem;
+      }
+
+      .privacy-list li::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 16px;
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        background: var(--accent);
+        mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M3 8.5l3 3 7-7' fill='none' stroke='black' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/></svg>") center/contain no-repeat;
+        -webkit-mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M3 8.5l3 3 7-7' fill='none' stroke='black' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/></svg>") center/contain no-repeat;
+      }
+
+      @media (max-width: 600px) {
+        .privacy-list { grid-template-columns: 1fr; }
+      }
+
+      /* Keycaps */
+      .kbd {
+        display: inline-block;
+        min-width: 24px;
+        padding: 2px 8px;
+        border: 1px solid var(--border);
+        border-bottom-width: 2px;
+        border-radius: 6px;
+        background: var(--bg-soft);
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+        font-size: 12px;
+        font-weight: 600;
+        color: var(--text);
+        line-height: 1.4;
+        text-align: center;
+        white-space: nowrap;
+      }
+
+      .kbd-sep {
+        margin: 0 4px;
+        color: var(--text-muted);
+        font-size: 12px;
+      }
+
+      /* Features grid */
+      .features {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 16px;
+      }
+
+      .feature {
+        position: relative;
+        padding: 26px;
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        background: var(--bg-elev);
+        overflow: hidden;
+      }
+
+      .feature::before {
+        content: "";
+        position: absolute;
+        inset: -1px;
+        border-radius: inherit;
+        padding: 1px;
+        background: linear-gradient(
+          135deg,
+          color-mix(in srgb, var(--accent) 32%, transparent),
+          transparent 40%,
+          transparent 60%,
+          color-mix(in srgb, var(--accent-2) 32%, transparent)
+        );
+        -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+                mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+        -webkit-mask-composite: xor;
+                mask-composite: exclude;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        pointer-events: none;
+      }
+
+      .feature:hover::before { opacity: 1; }
+
+      .feature .icon {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 38px;
+        height: 38px;
+        margin-bottom: 16px;
+        border-radius: 10px;
+        background:
+          linear-gradient(
+            135deg,
+            color-mix(in srgb, var(--accent) 18%, transparent),
+            color-mix(in srgb, var(--accent-2) 18%, transparent)
+          );
+        color: var(--accent);
+      }
+
+      .feature h3 {
+        margin: 0 0 8px;
+        font-size: 1.18rem;
+        font-weight: 700;
+        letter-spacing: -0.005em;
+      }
+
+      .feature p {
+        margin: 0;
+        font-size: 0.97rem;
+        color: var(--text-muted);
+      }
+
+      .feature .badge {
+        position: absolute;
+        top: 18px;
+        right: 18px;
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        padding: 4px 8px;
+        border-radius: 999px;
+        background: color-mix(in srgb, var(--accent) 12%, transparent);
+        color: var(--accent);
+        border: 1px solid color-mix(in srgb, var(--accent) 25%, transparent);
+      }
+
+      /* Tile visuals — product-true mini elements for the wide bento cards */
+      .tile-visual {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 8px;
+        margin: 4px 0 20px;
+        min-height: 56px;
+      }
+
+      .feature.wide .tile-visual {
+        min-height: 84px;
+      }
+
+      /* Chip row */
+      .chip {
+        display: inline-flex;
+        align-items: center;
+        padding: 7px 13px;
+        font-size: 13px;
+        font-weight: 600;
+        border-radius: 999px;
+        border: 1px solid var(--border);
+        background: var(--bg);
+        color: var(--text-muted);
+        white-space: nowrap;
+        letter-spacing: -0.005em;
+        transition: transform 0.15s ease, background 0.2s ease, color 0.2s ease;
+      }
+
+      .chip:hover {
+        color: var(--text);
+      }
+
+      .chip.active {
+        background:
+          linear-gradient(135deg,
+            var(--accent),
+            color-mix(in srgb, var(--accent) 70%, #6a52d6));
+        color: var(--accent-contrast);
+        border-color: transparent;
+        box-shadow: 0 6px 18px color-mix(in srgb, var(--accent) 32%, transparent);
+      }
+
+      .chip.add {
+        border-style: dashed;
+        color: var(--accent);
+        background: transparent;
+      }
+
+      /* Markdown sample */
+      .tile-visual.md-sample {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 6px;
+        min-height: 92px;
+      }
+
+      .md-sample p {
+        margin: 0;
+        font-size: 13.5px;
+        line-height: 1.6;
+        color: var(--text);
+      }
+
+      .md-sample code {
+        background: var(--bg-soft);
+        padding: 1px 6px;
+        border-radius: 4px;
+        font-size: 12.5px;
+        font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+        color: var(--accent);
+      }
+
+      .md-sample em { font-style: italic; }
+      .md-sample strong { font-weight: 700; }
+
+      .md-sample a {
+        text-decoration: underline;
+        text-decoration-color: color-mix(in srgb, var(--accent) 50%, transparent);
+        text-underline-offset: 2px;
+        color: var(--accent);
+      }
+
+      .md-sample ul {
+        margin: 0;
+        padding: 0 0 0 18px;
+        font-size: 13.5px;
+        color: var(--text);
+        line-height: 1.6;
+      }
+
+      /* Keycap combos */
+      .tile-visual.keycaps {
+        gap: 28px;
+        align-items: flex-end;
+        flex-wrap: wrap;
+      }
+
+      .combo {
+        display: inline-flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+      }
+
+      .combo-row {
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+      }
+
+      .combo-label {
+        font-size: 10.5px;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: var(--text-muted);
+        font-weight: 700;
+      }
+
+      .feature .kbd.big {
+        min-width: 32px;
+        padding: 6px 10px;
+        font-size: 14px;
         border-radius: 8px;
-        box-shadow: 0 18px 48px rgb(0 0 0 / 16%);
+        border-bottom-width: 2px;
+      }
+
+      /* Soundwave (Local dictation) */
+      .tile-visual.soundwave {
+        gap: 5px;
+        align-items: flex-end;
+        height: 64px;
+        min-height: 64px;
+      }
+
+      .soundwave span {
+        display: block;
+        width: 5px;
+        background: linear-gradient(to top, var(--accent), color-mix(in srgb, var(--accent) 50%, var(--accent-2)));
+        border-radius: 3px;
+        transform-origin: bottom;
+        animation: soundwave 1.4s ease-in-out infinite;
+      }
+
+      .soundwave span:nth-child(1)  { height: 30%; animation-delay: 0.00s; }
+      .soundwave span:nth-child(2)  { height: 65%; animation-delay: 0.10s; }
+      .soundwave span:nth-child(3)  { height: 90%; animation-delay: 0.20s; }
+      .soundwave span:nth-child(4)  { height: 50%; animation-delay: 0.30s; }
+      .soundwave span:nth-child(5)  { height: 80%; animation-delay: 0.40s; }
+      .soundwave span:nth-child(6)  { height: 95%; animation-delay: 0.50s; }
+      .soundwave span:nth-child(7)  { height: 55%; animation-delay: 0.60s; }
+      .soundwave span:nth-child(8)  { height: 75%; animation-delay: 0.70s; }
+      .soundwave span:nth-child(9)  { height: 40%; animation-delay: 0.80s; }
+      .soundwave span:nth-child(10) { height: 60%; animation-delay: 0.90s; }
+
+      @keyframes soundwave {
+        0%, 100% { transform: scaleY(1); }
+        50%      { transform: scaleY(0.35); }
+      }
+
+      /* Draft stack (Draft history) */
+      .tile-visual.stack {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 6px;
+        min-height: 64px;
+      }
+
+      .stack-row {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        height: 22px;
+        padding: 0 10px;
+        border: 1px solid var(--border);
+        border-radius: 7px;
+        background: var(--bg);
+      }
+
+      .stack-row::before {
+        content: "";
+        width: 5px;
+        height: 5px;
+        border-radius: 50%;
+        background: color-mix(in srgb, var(--text) 30%, transparent);
+        flex-shrink: 0;
+      }
+
+      .stack-row::after {
+        content: "";
+        flex: 1;
+        height: 4px;
+        border-radius: 2px;
+        background: color-mix(in srgb, var(--text) 14%, transparent);
+      }
+
+      .stack-row.now {
+        border-color: color-mix(in srgb, var(--accent) 38%, var(--border));
+        background: color-mix(in srgb, var(--accent) 6%, var(--bg));
+      }
+
+      .stack-row.now::before { background: var(--accent); }
+
+      .stack-row.now::after {
+        background: color-mix(in srgb, var(--accent) 32%, transparent);
+        width: 60%;
+        flex: none;
+      }
+
+      /* Use cases */
+      .uses {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px 28px;
+        max-width: 880px;
+        margin: 0 auto;
+        padding: 0;
+        list-style: none;
+      }
+
+      .uses li {
+        position: relative;
+        padding: 12px 0 12px 28px;
+        border-bottom: 1px solid var(--border);
+        font-size: 0.98rem;
+      }
+
+      .uses li::before {
+        content: "";
+        position: absolute;
+        left: 4px;
+        top: 50%;
+        width: 14px;
+        height: 14px;
+        margin-top: -7px;
+        border-radius: 50%;
+        background: color-mix(in srgb, var(--accent) 18%, transparent);
+        border: 2px solid var(--accent);
+      }
+
+      @media (max-width: 640px) {
+        .uses {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      /* Install */
+      .install-card {
+        max-width: 720px;
+        margin: 0 auto;
+        padding: 32px;
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        background: var(--bg-elev);
+      }
+
+      .install-card ol {
+        padding-left: 22px;
+        margin: 18px 0 0;
+      }
+
+      .install-card li {
+        padding: 6px 0;
+      }
+
+      .install-meta {
+        margin-top: 20px;
+        padding-top: 20px;
+        border-top: 1px solid var(--border);
+        font-size: 0.95rem;
+        color: var(--text-muted);
+      }
+
+      /* Footer */
+      footer.site {
+        padding: 40px 0 56px;
+        border-top: 1px solid var(--border);
+        color: var(--text-muted);
+        font-size: 14px;
+      }
+
+      .footer-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 16px 24px;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .footer-links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 16px;
+      }
+
+      .footer-links a {
+        color: var(--text-muted);
+      }
+
+      .footer-links a:hover {
+        color: var(--text);
+      }
+
+      .skip {
+        position: absolute;
+        left: -9999px;
+      }
+
+      .skip:focus {
+        position: static;
+        display: inline-block;
+        margin: 8px;
+        padding: 8px 12px;
+        background: var(--accent);
+        color: var(--accent-contrast);
+        border-radius: 6px;
+      }
+
+      /* ───────── Motion ───────── */
+
+      /* Hero aurora halo */
+      .hero {
+        position: relative;
+        overflow: hidden;
+      }
+
+      .hero > .container {
+        position: relative;
+        z-index: 1;
+      }
+
+      .hero-halo {
+        position: absolute;
+        inset: -40% -20% auto -20%;
+        height: 980px;
+        z-index: 0;
+        pointer-events: none;
+        background:
+          radial-gradient(36% 36% at 22% 28%, color-mix(in srgb, var(--accent) 42%, transparent), transparent 70%),
+          radial-gradient(40% 40% at 70% 36%, color-mix(in srgb, #d68a5e 36%, transparent), transparent 70%),
+          radial-gradient(32% 32% at 50% 76%, color-mix(in srgb, #e9a45e 30%, transparent), transparent 70%),
+          radial-gradient(34% 34% at 86% 64%, color-mix(in srgb, #8a6bd9 26%, transparent), transparent 70%);
+        filter: blur(86px) saturate(108%);
+        opacity: 0.85;
+        animation: halo-drift 22s ease-in-out infinite alternate;
       }
 
       @media (prefers-color-scheme: dark) {
-        body {
-          color: #f5f5f7;
-          background: #111;
+        .hero-halo {
+          opacity: 0.5;
+          filter: blur(100px) saturate(125%);
         }
+      }
 
-        a,
-        .button.secondary {
-          color: #66b2ff;
-        }
+      @keyframes halo-drift {
+        0%   { transform: translate3d(-3%, -2%, 0) scale(1) rotate(-2deg); }
+        100% { transform: translate3d(3%, 4%, 0) scale(1.12) rotate(2deg); }
+      }
 
-        .button {
-          border-color: #66b2ff;
-          background: #66b2ff;
-          color: #000;
+      /* Subtle dot grid behind hero */
+      .hero::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+        pointer-events: none;
+        background-image: radial-gradient(
+          circle at 1px 1px,
+          color-mix(in srgb, var(--text) 8%, transparent) 1px,
+          transparent 1.5px
+        );
+        background-size: 28px 28px;
+        -webkit-mask-image: radial-gradient(ellipse at center top, #000 0%, transparent 60%);
+                mask-image: radial-gradient(ellipse at center top, #000 0%, transparent 60%);
+        opacity: 0.6;
+      }
+
+      /* Hero entrance */
+      .hero h1,
+      .hero .lede,
+      .hero .actions,
+      .hero .meta,
+      .hero-image-wrap {
+        animation: fade-up 0.75s cubic-bezier(0.2, 0.7, 0, 1) both;
+      }
+      .hero h1            { animation-delay: 0.10s; }
+      .hero .lede         { animation-delay: 0.20s; }
+      .hero .actions      { animation-delay: 0.28s; }
+      .hero .meta         { animation-delay: 0.34s; }
+      .hero-image-wrap    { animation-delay: 0.44s; animation-duration: 0.9s; }
+
+      @keyframes fade-up {
+        from { opacity: 0; transform: translateY(10px); }
+        to   { opacity: 1; transform: translateY(0); }
+      }
+
+      /* Scroll reveal */
+      .reveal {
+        opacity: 0;
+        transform: translateY(16px);
+        transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.2, 0.7, 0, 1);
+      }
+
+      .reveal.in {
+        opacity: 1;
+        transform: none;
+      }
+
+      .staggered > * {
+        opacity: 0;
+        transform: translateY(16px);
+        transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.2, 0.7, 0, 1);
+      }
+
+      .staggered.in > * {
+        opacity: 1;
+        transform: none;
+      }
+
+      .staggered.in > *:nth-child(1) { transition-delay: 0ms; }
+      .staggered.in > *:nth-child(2) { transition-delay: 70ms; }
+      .staggered.in > *:nth-child(3) { transition-delay: 140ms; }
+      .staggered.in > *:nth-child(4) { transition-delay: 210ms; }
+      .staggered.in > *:nth-child(5) { transition-delay: 280ms; }
+      .staggered.in > *:nth-child(6) { transition-delay: 350ms; }
+      .staggered.in > *:nth-child(7) { transition-delay: 420ms; }
+      .staggered.in > *:nth-child(8) { transition-delay: 490ms; }
+
+      /* Card transitions — no lift, cards aren't clickable */
+      .feature {
+        transition:
+          opacity 0.6s ease,
+          border-color 0.25s ease;
+      }
+
+      .feature:hover {
+        border-color: color-mix(in srgb, var(--accent) 22%, var(--border));
+      }
+
+      .feature .icon {
+        transition: background 0.25s ease;
+      }
+
+      /* Primary button polish */
+      .button:not(.secondary):not(.ghost) {
+        background:
+          linear-gradient(135deg,
+            var(--accent),
+            color-mix(in srgb, var(--accent) 70%, #6a52d6));
+        border-color: transparent;
+        box-shadow:
+          0 1px 0 rgb(255 255 255 / 12%) inset,
+          0 8px 22px color-mix(in srgb, var(--accent) 32%, transparent);
+      }
+
+      .button:not(.secondary):not(.ghost):hover {
+        opacity: 1;
+        transform: translateY(-1px);
+        box-shadow:
+          0 1px 0 rgb(255 255 255 / 14%) inset,
+          0 12px 28px color-mix(in srgb, var(--accent) 45%, transparent);
+      }
+
+      .button:not(.secondary):not(.ghost):active {
+        transform: translateY(0);
+      }
+
+      /* Keycap press */
+      .flow-step:hover .kbd {
+        transform: translateY(1px);
+        border-bottom-width: 1px;
+      }
+
+      .kbd {
+        transition: transform 0.15s ease, border-bottom-width 0.15s ease;
+      }
+
+      /* Marquee */
+      .marquee {
+        margin: 56px auto 0;
+        max-width: 1080px;
+        position: relative;
+        overflow: hidden;
+        padding: 4px 0;
+        -webkit-mask-image: linear-gradient(to right, transparent, #000 12%, #000 88%, transparent);
+                mask-image: linear-gradient(to right, transparent, #000 12%, #000 88%, transparent);
+      }
+
+      .marquee-label {
+        display: block;
+        text-align: center;
+        font-size: 11px;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--text-muted);
+        margin-bottom: 18px;
+        font-weight: 600;
+      }
+
+      .marquee-track {
+        display: inline-flex;
+        gap: 40px;
+        padding-right: 40px;
+        white-space: nowrap;
+        animation: marquee-scroll 36s linear infinite;
+        will-change: transform;
+      }
+
+      .marquee-row {
+        display: flex;
+        gap: 0;
+        width: max-content;
+      }
+
+      .marquee-track > span {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: color-mix(in srgb, var(--text) 45%, transparent);
+        letter-spacing: -0.015em;
+        transition: color 0.3s ease;
+      }
+
+      .marquee-track > span:hover {
+        color: var(--text);
+      }
+
+      @keyframes marquee-scroll {
+        from { transform: translateX(0); }
+        to   { transform: translateX(calc(-50% - 20px)); }
+      }
+
+      /* Reduced motion */
+      @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+          animation-duration: 0.001ms !important;
+          animation-iteration-count: 1 !important;
+          transition-duration: 0.001ms !important;
+          scroll-behavior: auto !important;
         }
+        .reveal,
+        .staggered > * {
+          opacity: 1 !important;
+          transform: none !important;
+        }
+        .hero-halo { display: none; }
       }
     </style>
   </head>
   <body>
-    <main>
-      <h1>Snapdraft</h1>
-      <p>Public downloads, installation notes, update metadata, and issue tracking for Snapdraft.</p>
+    <a class="skip" href="#main">Skip to content</a>
 
-      <div class="actions">
-        <a class="button" href="https://github.com/ranyitz/snapdraft/releases">Download Latest Release</a>
-        <a class="button secondary" href="https://github.com/ranyitz/snapdraft/issues">Report an Issue</a>
+    <header class="site" role="banner">
+      <div class="container nav">
+        <a class="brand" href="#top" aria-label="Snapdraft home">
+          <img class="mark" src="assets/snapdraft-icon.png" alt="" aria-hidden="true" width="36" height="36">
+          <span>Snapdraft</span>
+        </a>
+        <nav class="nav-links" aria-label="Primary">
+          <a href="#features">Features</a>
+          <a href="#privacy">Privacy</a>
+          <a href="#install">Install</a>
+          <a class="nav-cta" href="https://github.com/ranyitz/snapdraft/releases/latest/download/Snapdraft.dmg">Download</a>
+        </nav>
       </div>
+    </header>
 
-      <img class="hero-image" src="assets/snapdraft-compose-preview.png" alt="Snapdraft writing interface preview">
+    <main id="main">
+      <!-- Hero -->
+      <section class="hero flush" aria-labelledby="hero-title">
+        <div class="hero-halo" aria-hidden="true"></div>
+        <div class="container">
+          <h1 id="hero-title"><span class="hl-grad">Polish messages</span> without&nbsp;leaving<br class="brk"> the&nbsp;app you’re&nbsp;in.</h1>
+          <p class="lede">
+            Snapdraft opens a local writing overlay on top of Slack, Gmail, WhatsApp, Zoom, and any other Mac app — so you can draft, rewrite, dictate, preserve formatting, and copy back without switching to a separate AI chat.
+          </p>
+          <div class="actions">
+            <a class="button" href="https://github.com/ranyitz/snapdraft/releases/latest/download/Snapdraft.dmg">Download for macOS</a>
+          </div>
+          <p class="meta">Requires macOS 13.3 or later · Apple silicon</p>
+          <div class="hero-image-wrap">
+            <img class="hero-image" src="assets/snapdraft-compose-preview.png" alt="The Snapdraft overlay floating above another macOS app, showing draft text and rewrite options.">
+          </div>
 
-      <h2>Install</h2>
-      <ol>
-        <li>Download the latest macOS <code>.dmg</code> release.</li>
-        <li>Open the disk image.</li>
-        <li>Drag <code>Snapdraft.app</code> into <code>Applications</code>.</li>
-        <li>Launch Snapdraft from <code>Applications</code>.</li>
-      </ol>
-      <p>If macOS blocks the first launch, open System Settings, review the security prompt, and allow Snapdraft to open.</p>
+          <div class="marquee" aria-hidden="true">
+            <span class="marquee-label">Works on top of</span>
+            <div class="marquee-track">
+              <span>Slack</span>
+              <span>Gmail</span>
+              <span>WhatsApp</span>
+              <span>Zoom</span>
+              <span>Notion</span>
+              <span>Linear</span>
+              <span>GitHub</span>
+              <span>Messages</span>
+              <span>Mail</span>
+              <span>Discord</span>
+              <span>Slack</span>
+              <span>Gmail</span>
+              <span>WhatsApp</span>
+              <span>Zoom</span>
+              <span>Notion</span>
+              <span>Linear</span>
+              <span>GitHub</span>
+              <span>Messages</span>
+              <span>Mail</span>
+              <span>Discord</span>
+            </div>
+          </div>
+        </div>
+      </section>
 
-      <h2>Updates</h2>
-      <p>Snapdraft uses Sparkle for in-app updates. The public appcast is available at <a href="appcast.xml"><code>https://ranyitz.github.io/snapdraft/appcast.xml</code></a>.</p>
-      <p>The appcast is currently a valid placeholder feed. Future releases will add signed update items and artifacts through release automation.</p>
+      <!-- Why -->
+      <section id="why" aria-labelledby="why-title">
+        <div class="container why-layout">
+          <div class="why-intro reveal">
+            <span class="section-eyebrow"><span class="num">01</span>The problem</span>
+            <h2 id="why-title">Everyday writing shouldn’t mean a trip to a chatbot.</h2>
+            <p>Writing happens across Slack, WhatsApp, Gmail, comments, support tools, and a dozen quick message boxes. For each small rewrite, opening a separate AI chat adds friction, breaks formatting, and scatters your drafts.</p>
+          </div>
+          <ol class="why-list staggered">
+            <li>
+              <span class="why-num">01</span>
+              <h3>Too much context switching</h3>
+              <p>Stop bouncing to ChatGPT or Claude in another tab just to fix a sentence.</p>
+            </li>
+            <li>
+              <span class="why-num">02</span>
+              <h3>Same intent, again and again</h3>
+              <p>“Make this clearer,” “rewrite as an email” — rewrite modes are reusable, not retyped.</p>
+            </li>
+            <li>
+              <span class="why-num">03</span>
+              <h3>Formatting gets lost</h3>
+              <p>Copy/paste between chat tools strips bullets, links, bold, and code. Snapdraft preserves it.</p>
+            </li>
+            <li>
+              <span class="why-num">04</span>
+              <h3>Drafts go missing</h3>
+              <p>Quick messages are still work. Snapdraft keeps a local history so drafts don’t disappear.</p>
+            </li>
+          </ol>
+        </div>
+      </section>
 
-      <h2>Docs</h2>
-      <p>Read <a href="docs/install.md">install details</a>, <a href="docs/updates.md">update notes</a>, and <a href="docs/known-issues.md">known issues</a>.</p>
+      <!-- How it works -->
+      <section id="how" class="section-how" aria-label="How it works">
+        <div class="container">
+          <div class="section-head reveal section-head--eyebrow-only">
+            <span class="section-eyebrow"><span class="num">02</span>The flow</span>
+          </div>
+          <ol class="flow staggered">
+            <li class="flow-step">
+              <div class="flow-num">1</div>
+              <h3>Summon</h3>
+              <p>Open Snapdraft from anywhere with a global shortcut.</p>
+              <p class="keys">
+                <span class="kbd">⌘</span><span class="kbd-sep">+</span><span class="kbd">⇧</span><span class="kbd-sep">+</span><span class="kbd">Space</span>
+              </p>
+            </li>
+            <li class="flow-step">
+              <div class="flow-num">2</div>
+              <h3>Draft</h3>
+              <p>Type into the overlay or paste what you’re working on.</p>
+            </li>
+            <li class="flow-step">
+              <div class="flow-num">3</div>
+              <h3>Rewrite</h3>
+              <p>Run a mode like <em>Fix errors</em>, <em>Improve writing</em>, <em>Email</em>, or <em>Message</em>.</p>
+              <p class="keys">
+                <span class="kbd">⌘</span><span class="kbd-sep">+</span><span class="kbd">Return</span>
+              </p>
+            </li>
+            <li class="flow-step">
+              <div class="flow-num">4</div>
+              <h3>Copy</h3>
+              <p>Send to your clipboard with formatting preserved, then paste anywhere.</p>
+              <p class="keys">
+                <span class="kbd">⌘</span><span class="kbd-sep">+</span><span class="kbd">C</span>
+              </p>
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      <!-- Features -->
+      <section id="features" aria-labelledby="features-title">
+        <div class="container">
+          <div class="section-head reveal">
+            <span class="section-eyebrow"><span class="num">03</span>What’s inside</span>
+            <h2 id="features-title">Built for the writing you actually do.</h2>
+            <p>Short messages and longer paragraphs, across native and web apps.</p>
+          </div>
+          <div class="features staggered">
+            <article class="feature">
+              <span class="badge">On-device</span>
+              <div class="tile-visual chips" aria-hidden="true">
+                <span class="chip">Fix errors</span>
+                <span class="chip active">Improve writing</span>
+                <span class="chip">Email</span>
+                <span class="chip">Message</span>
+              </div>
+              <h3>Local rewriting</h3>
+              <p>Rewrites run on your Mac through llama.cpp. No round-trips to a third-party server, no quotas, no waiting on someone else’s GPU.</p>
+            </article>
+            <article class="feature">
+              <div class="tile-visual md-sample" aria-hidden="true">
+                <p><strong>Bold</strong>, <em>italic</em>, <code>monospace</code>, and <a href="#" onclick="return false;">links</a> all survive.</p>
+                <ul>
+                  <li>So do bullet points</li>
+                  <li>and the structure around them</li>
+                </ul>
+              </div>
+              <h3>Markdown &amp; rich text</h3>
+              <p>Bullets, links, bold, italics, code, and paragraphs survive the rewrite and the paste — no rebuilding formatting after the LLM.</p>
+            </article>
+            <article class="feature">
+              <div class="tile-visual chips" aria-hidden="true">
+                <span class="chip">Polish for Slack</span>
+                <span class="chip">Bug report</span>
+                <span class="chip">Translate to FR</span>
+                <span class="chip add">+ New mode</span>
+              </div>
+              <h3>Custom rewrite modes</h3>
+              <p>Use the built-ins — Fix errors, Improve writing, Email, Message — or create, edit, and arrange your own to match the way you actually write.</p>
+            </article>
+            <article class="feature">
+              <div class="tile-visual soundwave" aria-hidden="true">
+                <span></span><span></span><span></span><span></span><span></span>
+                <span></span><span></span><span></span><span></span><span></span>
+              </div>
+              <h3>Local dictation</h3>
+              <p>Speak even where the current app has no mic input. Transcription runs locally through whisper.cpp.</p>
+            </article>
+            <article class="feature">
+              <div class="tile-visual stack" aria-hidden="true">
+                <div class="stack-row"></div>
+                <div class="stack-row now"></div>
+                <div class="stack-row"></div>
+              </div>
+              <h3>Draft history</h3>
+              <p>Snapdraft remembers what you were writing, so unfinished drafts don’t disappear between sessions.</p>
+            </article>
+            <article class="feature">
+              <div class="tile-visual keycaps" aria-hidden="true">
+                <div class="combo">
+                  <span class="combo-row">
+                    <span class="kbd big">⌘</span>
+                    <span class="kbd big">⇧</span>
+                    <span class="kbd big">Space</span>
+                  </span>
+                  <span class="combo-label">Summon</span>
+                </div>
+                <div class="combo">
+                  <span class="combo-row">
+                    <span class="kbd big">⌘</span>
+                    <span class="kbd big">↩</span>
+                  </span>
+                  <span class="combo-label">Rewrite</span>
+                </div>
+              </div>
+              <h3>Keyboard-first</h3>
+              <p>Summon, draft, rewrite, and copy without ever reaching for the trackpad.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- Privacy -->
+      <section id="privacy" aria-labelledby="privacy-title">
+        <div class="container">
+          <div class="privacy-block reveal">
+            <span class="section-eyebrow"><span class="num">04</span>Privacy</span>
+            <h2 id="privacy-title">Your drafts stay on&nbsp;your Mac.</h2>
+            <p class="privacy-lede">Snapdraft is local-first. Rewrites use a local model, transcription uses a local speech model, and your draft history lives on your machine — not on someone else’s server.</p>
+            <ul class="privacy-list">
+              <li>Rewriting runs locally through llama.cpp.</li>
+              <li>Transcription runs locally through whisper.cpp.</li>
+              <li>Draft history is stored on your Mac.</li>
+              <li>Models download on first use and are cached locally.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- Install -->
+      <section id="install" aria-labelledby="install-title">
+        <div class="container">
+          <div class="section-head reveal">
+            <span class="section-eyebrow"><span class="num">05</span>Install</span>
+            <h2 id="install-title">Get Snapdraft.</h2>
+            <p>Distributed through GitHub Releases. Free while it’s in early testing.</p>
+          </div>
+          <div class="install-card reveal">
+            <div class="actions" style="margin: 0; justify-content: flex-start;">
+              <a class="button" href="https://github.com/ranyitz/snapdraft/releases/latest/download/Snapdraft.dmg">Download latest DMG</a>
+              <a class="button ghost" href="https://github.com/ranyitz/snapdraft/releases">All releases</a>
+            </div>
+            <ol>
+              <li>Download the latest <code>Snapdraft.dmg</code>.</li>
+              <li>Open the DMG and drag <strong>Snapdraft</strong> into <strong>Applications</strong>.</li>
+              <li>Launch Snapdraft from <code>Applications</code>.</li>
+              <li>Press <span class="kbd">⌘</span><span class="kbd-sep">+</span><span class="kbd">⇧</span><span class="kbd-sep">+</span><span class="kbd">Space</span> to open the drafting overlay.</li>
+            </ol>
+            <div class="install-meta">
+              <p style="margin: 0 0 6px;">Requires macOS 13.3 or later. If macOS blocks the first launch, open <strong>System Settings → Privacy &amp; Security</strong> and allow Snapdraft to open.</p>
+              <p style="margin: 0;">Hitting trouble? <a href="https://github.com/ranyitz/snapdraft/issues">Open an issue on GitHub</a>.</p>
+            </div>
+          </div>
+        </div>
+      </section>
     </main>
+
+    <footer class="site">
+      <div class="container footer-row">
+        <div>
+          <strong style="color: var(--text);">Snapdraft</strong> — a local-first macOS drafting overlay.
+        </div>
+        <div class="footer-links">
+          <a href="https://github.com/ranyitz/snapdraft">GitHub</a>
+          <a href="https://github.com/ranyitz/snapdraft/issues">Issues</a>
+          <a href="https://github.com/ranyitz/snapdraft/releases">Releases</a>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      (function () {
+        var els = document.querySelectorAll('.reveal, .staggered');
+        if (!('IntersectionObserver' in window)) {
+          els.forEach(function (el) { el.classList.add('in'); });
+          return;
+        }
+        var io = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('in');
+              io.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+        els.forEach(function (el) { io.observe(el); });
+      })();
+    </script>
   </body>
 </html>
