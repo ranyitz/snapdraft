@@ -1,46 +1,50 @@
 # Snapdraft
 
-Public distribution, documentation, Sparkle appcast, and issue tracking for Snapdraft.
+Snapdraft is a local-first macOS drafting overlay for polishing messages without leaving the app you are already using.
 
-## Website
+Open it on top of any other Mac app. Draft, rewrite, dictate, preserve formatting, and copy.
 
-The public landing page is published with GitHub Pages:
+<p>
+  <a href="https://ranyitz.github.io/snapdraft/">Website</a> |
+  <a href="https://github.com/ranyitz/snapdraft/releases/latest/download/Snapdraft.dmg">Download</a>
+</p>
 
-https://ranyitz.github.io/snapdraft/
+![Snapdraft compose overlay preview](assets/snapdraft-compose-preview.png)
 
-## Download
+## Why Snapdraft
 
-Download the latest macOS build from the GitHub Releases page:
+Everyday writing happens in small boxes across a dozen tools. Opening a chatbot for every rewrite adds friction, loses formatting, and scatters drafts.
 
-https://github.com/ranyitz/snapdraft/releases
+Snapdraft keeps the writing flow where it belongs:
+
+- Open a drafting overlay from anywhere on your Mac.
+- Rewrite with built-in modes like Fix errors, Improve writing, Email, and Message.
+- Create custom rewrite modes for the way you actually communicate.
+- Preserve bullets, links, bold, italics, code, and paragraph structure.
+- Dictate into apps that do not have their own microphone input.
+- Keep draft history locally, so unfinished writing does not disappear.
+
+![Snapdraft rewrite preview](assets/snapdraft-rewrite-preview.jpeg)
+
+## Local-First
+
+Snapdraft is built around keeping your writing on your machine.
+
+- Rewriting runs locally through `llama.cpp`.
+- Transcription runs locally through `whisper.cpp`.
+- Draft history is stored on your Mac.
+- Models download on first use and are cached locally.
 
 ## Install
 
-1. Download the latest `.dmg`
-2. Open it
-3. Drag `Snapdraft.app` into `Applications`
-4. Launch Snapdraft
+1. Download the latest [`Snapdraft.dmg`](https://github.com/ranyitz/snapdraft/releases/latest/download/Snapdraft.dmg).
+2. Open the DMG.
+3. Drag `Snapdraft.app` into `Applications`.
+4. Launch Snapdraft from `Applications`.
+5. Press `Cmd + Shift + Space` to open the drafting overlay.
 
-For more detail, see [docs/install.md](docs/install.md).
+Snapdraft requires macOS 13.3 or later and Apple silicon.
 
-## Updates
+## Support
 
-Snapdraft is designed to update in place through its built-in updater.
-
-The public Sparkle appcast URL is:
-
-https://ranyitz.github.io/snapdraft/appcast.xml
-
-Release automation will manage update artifacts under `updates/` later. Do not commit signing secrets or private keys to this repository.
-
-For more detail, see [docs/updates.md](docs/updates.md).
-
-## Issues
-
-If you hit a bug, installation problem, or update issue, open an issue in this repository.
-
-Known issues and troubleshooting notes live in [docs/known-issues.md](docs/known-issues.md).
-
-## Notes
-
-This repository is public so testers can access documentation, downloads, and issue tracking.
+For installation problems, bugs, or feature requests, [open an issue](https://github.com/ranyitz/snapdraft/issues).
