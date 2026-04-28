@@ -534,6 +534,24 @@
         max-width: none;
       }
 
+      .rewrite-preview {
+        margin: 56px auto 0;
+        max-width: 1080px;
+      }
+
+      .rewrite-preview img {
+        display: block;
+        width: 100%;
+        height: auto;
+        border-radius: 18px;
+        border: 1px solid var(--border);
+        background: var(--bg-elev);
+        box-shadow:
+          0 1px 0 rgb(255 255 255 / 8%) inset,
+          0 28px 72px rgb(0 0 0 / 18%),
+          0 8px 18px rgb(0 0 0 / 10%);
+      }
+
       @media (max-width: 760px) {
         .flow {
           grid-template-columns: 1fr;
@@ -551,6 +569,8 @@
         .flow-num { margin: 0; grid-row: span 3; }
         .flow-step > p { margin: 0; max-width: none; }
         .flow-step .keys { margin-top: 6px; }
+        .rewrite-preview { margin-top: 36px; }
+        .rewrite-preview img { border-radius: 12px; }
       }
 
       /* Privacy — bold typographic block */
@@ -1441,6 +1461,9 @@
               </p>
             </li>
           </ol>
+          <div class="rewrite-preview reveal">
+            <img src="assets/snapdraft-rewrite-preview.jpeg" alt="Snapdraft showing an original message and a clearer rewritten version ready to copy." loading="lazy">
+          </div>
         </div>
       </section>
 
@@ -1550,7 +1573,6 @@
           <div class="section-head reveal">
             <span class="section-eyebrow"><span class="num">05</span>Install</span>
             <h2 id="install-title">Get Snapdraft.</h2>
-            <p>Distributed through GitHub Releases. Free while it’s in early testing.</p>
           </div>
           <div class="install-card reveal">
             <div class="actions" style="margin: 0; justify-content: flex-start;">
@@ -1564,7 +1586,6 @@
               <li>Press <span class="kbd">⌘</span><span class="kbd-sep">+</span><span class="kbd">⇧</span><span class="kbd-sep">+</span><span class="kbd">Space</span> to open the drafting overlay.</li>
             </ol>
             <div class="install-meta">
-              <p style="margin: 0 0 6px;">Requires macOS 13.3 or later. If macOS blocks the first launch, open <strong>System Settings → Privacy &amp; Security</strong> and allow Snapdraft to open.</p>
               <p style="margin: 0;">Hitting trouble? <a href="https://github.com/ranyitz/snapdraft/issues">Open an issue on GitHub</a>.</p>
             </div>
           </div>
