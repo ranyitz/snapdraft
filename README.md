@@ -41,7 +41,7 @@ Snapdraft is built around keeping your writing on your machine.
 2. Open the DMG.
 3. Drag `Snapdraft.app` into `Applications`.
 4. Launch Snapdraft from `Applications`.
-5. Press `Cmd + Shift + Space` to open the drafting overlay.
+5. Press `Ctrl + Shift + Space` to open the drafting overlay.
 
 Snapdraft requires macOS 13.3 or later and Apple silicon.
 
