@@ -86,80 +86,6 @@
         margin: 0 auto;
       }
 
-      /* Header */
-      header.site {
-        position: relative;
-        z-index: 10;
-        background: var(--bg);
-        border-bottom: 1px solid var(--border);
-      }
-
-      .nav {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        height: 56px;
-      }
-
-      .brand {
-        display: inline-flex;
-        align-items: center;
-        gap: 10px;
-        color: var(--text);
-        font-weight: 600;
-        letter-spacing: -0.01em;
-      }
-
-      .brand:hover {
-        text-decoration: none;
-      }
-
-      .brand .mark {
-        width: 36px;
-        height: 36px;
-        display: block;
-        object-fit: contain;
-      }
-
-      .nav-links {
-        display: flex;
-        align-items: center;
-        gap: 24px;
-      }
-
-      .nav-links a {
-        color: var(--text-muted);
-        font-size: 14px;
-      }
-
-      .nav-links a:hover {
-        color: var(--text);
-        text-decoration: none;
-      }
-
-      .nav-cta {
-        display: inline-flex;
-        align-items: center;
-        height: 32px;
-        padding: 0 14px;
-        border-radius: 16px;
-        background: var(--accent);
-        color: var(--accent-contrast) !important;
-        font-size: 14px;
-        font-weight: 600;
-      }
-
-      .nav-cta:hover {
-        text-decoration: none;
-        opacity: 0.92;
-      }
-
-      @media (max-width: 640px) {
-        .nav-links a:not(.nav-cta) {
-          display: none;
-        }
-      }
-
       /* Buttons */
       .button {
         display: inline-flex;
@@ -1052,6 +978,20 @@
         align-items: center;
       }
 
+      .footer-brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .footer-icon {
+        width: 36px;
+        height: 36px;
+        display: block;
+        object-fit: contain;
+        flex: 0 0 auto;
+      }
+
       .footer-links {
         display: flex;
         flex-wrap: wrap;
@@ -1316,21 +1256,6 @@
   <body>
     <a class="skip" href="#main">Skip to content</a>
 
-    <header class="site" role="banner">
-      <div class="container nav">
-        <a class="brand" href="#top" aria-label="Snapdraft home">
-          <img class="mark" src="assets/snapdraft-icon.png" alt="" aria-hidden="true" width="36" height="36">
-          <span>Snapdraft</span>
-        </a>
-        <nav class="nav-links" aria-label="Primary">
-          <a href="#features">Features</a>
-          <a href="#privacy">Privacy</a>
-          <a href="#install">Install</a>
-          <a class="nav-cta" href="https://github.com/ranyitz/snapdraft/releases/latest/download/Snapdraft.dmg">Download</a>
-        </nav>
-      </div>
-    </header>
-
     <main id="main">
       <!-- Hero -->
       <section class="hero flush" aria-labelledby="hero-title">
@@ -1579,8 +1504,11 @@
 
     <footer class="site">
       <div class="container footer-row">
-        <div>
-          <strong style="color: var(--text);">Snapdraft</strong> — a local-first macOS drafting overlay.
+        <div class="footer-brand">
+          <img class="footer-icon" src="assets/snapdraft-icon.png" alt="" aria-hidden="true" width="36" height="36">
+          <div>
+            <strong style="color: var(--text);">Snapdraft</strong> — a local-first macOS drafting overlay.
+          </div>
         </div>
         <div class="footer-links">
           <a href="https://github.com/ranyitz/snapdraft">GitHub</a>
