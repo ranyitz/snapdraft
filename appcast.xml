@@ -3,14 +3,14 @@
     <channel>
         <title>Snapdraft</title>
         <item>
-            <title>0.1.11</title>
-            <pubDate>Wed, 29 Apr 2026 21:13:32 +0000</pubDate>
+            <title>0.1.12</title>
+            <pubDate>Fri, 01 May 2026 14:13:15 +0000</pubDate>
             <link>https://github.com/ranyitz/snapdraft</link>
-            <sparkle:version>22</sparkle:version>
-            <sparkle:shortVersionString>0.1.11</sparkle:shortVersionString>
+            <sparkle:version>23</sparkle:version>
+            <sparkle:shortVersionString>0.1.12</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>13.3</sparkle:minimumSystemVersion>
             <sparkle:hardwareRequirements>arm64</sparkle:hardwareRequirements>
-            <enclosure url="https://ranyitz.github.io/snapdraft/updates/Snapdraft-0.1.11.dmg" length="14594370" type="application/octet-stream" sparkle:edSignature="eNwHsVJLYlbS/CpWGVRFP9OFEGyDh4mm3mtsOJrLW1COuZ3kUBqFIxJasF9Ivgr28E+PrkXovCbr/6l4aYsdCw=="/>
+            <enclosure url="https://ranyitz.github.io/snapdraft/updates/Snapdraft-0.1.12.dmg" length="14593916" type="application/octet-stream" sparkle:edSignature="IzvnRJ/5wXSJ4oo6A19Yd81CSCXfiV6AKqMpa3tx4Rt8RwdaxLT0ebHNzGskg5N2PDo+IgNECUqDrfMbegDpBQ=="/>
         </item>
     </channel>
 </rss>
