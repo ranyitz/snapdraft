@@ -10,7 +10,7 @@
             <sparkle:shortVersionString>0.1.12</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>13.3</sparkle:minimumSystemVersion>
             <sparkle:hardwareRequirements>arm64</sparkle:hardwareRequirements>
-            <enclosure url="https://ranyitz.github.io/snapdraft/updates/Snapdraft-0.1.12.dmg" length="14593916" type="application/octet-stream" sparkle:edSignature="IzvnRJ/5wXSJ4oo6A19Yd81CSCXfiV6AKqMpa3tx4Rt8RwdaxLT0ebHNzGskg5N2PDo+IgNECUqDrfMbegDpBQ=="/>
+            <sparkle:releaseNotesLink>https://ranyitz.github.io/snapdraft/updates/Snapdraft-0.1.12.md</sparkle:releaseNotesLink>\n            <enclosure url="https://ranyitz.github.io/snapdraft/updates/Snapdraft-0.1.12.dmg" length="14593916" type="application/octet-stream" sparkle:edSignature="IzvnRJ/5wXSJ4oo6A19Yd81CSCXfiV6AKqMpa3tx4Rt8RwdaxLT0ebHNzGskg5N2PDo+IgNECUqDrfMbegDpBQ=="/>
         </item>
     </channel>
 </rss>
