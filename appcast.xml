@@ -3,15 +3,15 @@
     <channel>
         <title>Snapdraft</title>
         <item>
-            <title>0.1.19</title>
-            <pubDate>Wed, 13 May 2026 12:00:07 +0000</pubDate>
+            <title>0.1.20</title>
+            <pubDate>Tue, 09 Jun 2026 13:43:39 +0000</pubDate>
             <link>https://github.com/ranyitz/snapdraft</link>
-            <sparkle:version>30</sparkle:version>
-            <sparkle:shortVersionString>0.1.19</sparkle:shortVersionString>
+            <sparkle:version>31</sparkle:version>
+            <sparkle:shortVersionString>0.1.20</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>13.3</sparkle:minimumSystemVersion>
             <sparkle:hardwareRequirements>arm64</sparkle:hardwareRequirements>
-            <sparkle:releaseNotesLink>https://ranyitz.github.io/snapdraft/updates/Snapdraft-0.1.19.md</sparkle:releaseNotesLink>
-            <enclosure url="https://ranyitz.github.io/snapdraft/updates/Snapdraft-0.1.19.dmg" length="23945681" type="application/octet-stream" sparkle:edSignature="mUnm5VGVmNiXtqTtQnwIbgXaSRbakG/yjUxceO9rnXz3jr/0u54r0HReaiWUjobm+al6I5a1CgUy2PyTGunVDQ=="/>
+            <sparkle:releaseNotesLink>https://ranyitz.github.io/snapdraft/updates/Snapdraft-0.1.20.md</sparkle:releaseNotesLink>
+            <enclosure url="https://ranyitz.github.io/snapdraft/updates/Snapdraft-0.1.20.dmg" length="23942563" type="application/octet-stream" sparkle:edSignature="SRwjT6EKpEh6iYVEhppm3oJ5mfUMGbep4ropyx6bCc2qLiDfXjarueJnDYN+HKWkeMvYddDJsnndnf9SwfuYBQ=="/>
         </item>
     </channel>
 </rss>
