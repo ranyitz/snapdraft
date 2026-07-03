@@ -4,12 +4,12 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Snapdraft — Polish messages without leaving the app you’re in</title>
-    <meta name="description" content="Snapdraft is a local-first macOS drafting overlay. Draft, rewrite, and dictate on top of Slack, Gmail, WhatsApp, Zoom, and any other Mac app — without switching to a separate AI chat.">
+    <meta name="description" content="Snapdraft is a local-first macOS drafting overlay. Draft, rewrite, and dictate on top of Slack, Gmail, WhatsApp, Zoom, and any other Mac app — with a local model by default, or your own ChatGPT account.">
     <meta name="theme-color" content="#faf6ee" media="(prefers-color-scheme: light)">
     <meta name="theme-color" content="#14110d" media="(prefers-color-scheme: dark)">
     <meta property="og:type" content="website">
     <meta property="og:title" content="Snapdraft — Polish messages without leaving the app you’re in">
-    <meta property="og:description" content="A local-first macOS drafting overlay. Draft, rewrite, and dictate on top of any Mac app — Slack, Gmail, WhatsApp, Zoom, and more.">
+    <meta property="og:description" content="A local-first macOS drafting overlay. Draft, rewrite, and dictate on top of any Mac app — with a local model by default, or your own ChatGPT account.">
     <meta property="og:url" content="https://ranyitz.github.io/snapdraft/">
     <meta property="og:image" content="https://ranyitz.github.io/snapdraft/assets/snapdraft-compose-preview.png">
     <meta name="twitter:card" content="summary_large_image">
@@ -623,6 +623,14 @@
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
         gap: 16px;
+      }
+
+      .features .feature:last-child {
+        grid-column: 1 / -1;
+      }
+
+      .features .feature:last-child .tile-visual {
+        justify-content: center;
       }
 
       .feature {
@@ -1313,7 +1321,7 @@
             <li>
               <span class="why-num">01</span>
               <h3>Too much context switching</h3>
-              <p>Stop bouncing to ChatGPT or Claude in another tab just to fix a sentence.</p>
+              <p>Stop bouncing to ChatGPT or Claude in another tab just to fix a sentence — Snapdraft brings the rewrite to you, and can even use your ChatGPT account.</p>
             </li>
             <li>
               <span class="why-num">02</span>
@@ -1394,7 +1402,15 @@
                 <span class="chip">Message</span>
               </div>
               <h3>Local rewriting</h3>
-              <p>Rewrites run on your Mac through llama.cpp. No round-trips to a third-party server, no quotas, no waiting on someone else’s GPU.</p>
+              <p>Rewrites run on your Mac through llama.cpp by default. No round-trips, no quotas, no waiting on someone else’s GPU.</p>
+            </article>
+            <article class="feature">
+              <div class="tile-visual chips" aria-hidden="true">
+                <span class="chip active">Local model</span>
+                <span class="chip">Your ChatGPT</span>
+              </div>
+              <h3>Bring your own ChatGPT</h3>
+              <p>Connect your ChatGPT account and rewrite with a frontier model when you want more than the local one. Only the draft you’re rewriting is sent — under your own account.</p>
             </article>
             <article class="feature">
               <div class="tile-visual md-sample" aria-hidden="true">
@@ -1464,13 +1480,15 @@
           <div class="privacy-block reveal">
             <span class="section-eyebrow"><span class="num">04</span>Privacy</span>
             <h2 id="privacy-title">Your drafts stay on&nbsp;your Mac.</h2>
-            <p class="privacy-lede">Snapdraft is local-first. Rewrites use a local model, transcription uses a local speech model, and your draft history lives on your machine — not on someone else’s server.</p>
+            <p class="privacy-lede">Snapdraft is local-first. Rewrites use a local model, transcription uses a local speech model, and your draft history lives on your machine — not on someone else’s server. The only cloud path is optional: your own ChatGPT account, if you connect one.</p>
             <ul class="privacy-list">
               <li>Rewriting runs locally through llama.cpp.</li>
               <li>Transcription runs locally through whisper.cpp.</li>
               <li>Draft history is stored on your Mac.</li>
               <li>Models download on first use and are cached locally.</li>
+              <li>Optional ChatGPT rewrites send only the draft you’re rewriting — under your own account, never your history or clipboard.</li>
             </ul>
+            <p>Read the full <a href="https://github.com/ranyitz/snapdraft/blob/main/PRIVACY.md">privacy policy</a>.</p>
           </div>
         </div>
       </section>
@@ -1494,6 +1512,7 @@
               <li>Press <span class="kbd">⌘</span><span class="kbd-sep">+</span><span class="kbd">⇧</span><span class="kbd-sep">+</span><span class="kbd">Space</span> to open the drafting overlay.</li>
             </ol>
             <div class="install-meta">
+              <p style="margin: 0;">Requires macOS 13.3 or later and Apple silicon. Local rewriting runs best with 16&nbsp;GB of memory or more — on 8&nbsp;GB Macs, connecting your ChatGPT account is the smoother option.</p>
               <p style="margin: 0;">Hitting trouble? <a href="https://github.com/ranyitz/snapdraft/issues">Open an issue on GitHub</a>.</p>
             </div>
           </div>

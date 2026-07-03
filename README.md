@@ -21,6 +21,7 @@ Snapdraft keeps the writing flow where it belongs:
 - Open a drafting overlay from anywhere on your Mac.
 - Rewrite with built-in modes like Fix errors, Improve writing, Email, and Message.
 - Create custom rewrite modes for the way you actually communicate.
+- Rewrite locally by default, or connect your ChatGPT account for frontier-model rewrites.
 - Preserve bullets, links, bold, italics, code, and paragraph structure.
 - Dictate into apps that do not have their own microphone input.
 - Keep draft history locally, so unfinished writing does not disappear.
@@ -31,10 +32,11 @@ Snapdraft keeps the writing flow where it belongs:
 
 Snapdraft is built around keeping your writing on your machine.
 
-- Rewriting runs locally through `llama.cpp`.
+- Rewriting runs locally through `llama.cpp` by default.
 - Transcription runs locally through `whisper.cpp`.
 - Draft history is stored on your Mac.
 - Models download on first use and are cached locally.
+- Optional ChatGPT rewrites use your own account and send only the draft being rewritten.
 
 Read the full [privacy policy](PRIVACY.md).
 
@@ -46,7 +48,7 @@ Read the full [privacy policy](PRIVACY.md).
 4. Launch Snapdraft from `Applications`.
 5. Press `Cmd + Shift + Space` to open the drafting overlay.
 
-Snapdraft requires macOS 13.3 or later and Apple silicon.
+Snapdraft requires macOS 13.3 or later and Apple silicon. Local rewriting runs best with 16 GB of memory or more — on 8 GB Macs, connecting your ChatGPT account is the smoother option.
 
 ## Support
 
