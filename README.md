@@ -6,7 +6,8 @@ Open it on top of any other Mac app. Draft, rewrite, dictate, preserve formattin
 
 <p>
   <a href="https://ranyitz.github.io/snapdraft/">Website</a> |
-  <a href="https://github.com/ranyitz/snapdraft/releases/latest/download/Snapdraft.dmg">Download</a>
+  <a href="https://github.com/ranyitz/snapdraft/releases/latest/download/Snapdraft.dmg">Download</a> |
+  <a href="PRIVACY.md">Privacy</a>
 </p>
 
 ![Snapdraft compose overlay preview](assets/snapdraft-compose-preview.png)
@@ -35,6 +36,8 @@ Snapdraft is built around keeping your writing on your machine.
 - Draft history is stored on your Mac.
 - Models download on first use and are cached locally.
 
+Read the full [privacy policy](PRIVACY.md).
+
 ## Install
 
 1. Download the latest [`Snapdraft.dmg`](https://github.com/ranyitz/snapdraft/releases/latest/download/Snapdraft.dmg).
@@ -48,3 +51,7 @@ Snapdraft requires macOS 13.3 or later and Apple silicon.
 ## Support
 
 For installation problems, bugs, or feature requests, [open an issue](https://github.com/ranyitz/snapdraft/issues).
+
+## License
+
+Snapdraft is proprietary freeware — free to download and use for personal use. See the [EULA](EULA.md) for the full terms.
