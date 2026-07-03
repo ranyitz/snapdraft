@@ -27,6 +27,8 @@ The appcast is currently a valid placeholder feed. Future releases will add sign
 
 For setup details, see [Install](docs/install.md), [Updates](docs/updates.md), and [Known Issues](docs/known-issues.md).
 
+See the [privacy policy](PRIVACY.md) for details on what stays on your Mac, and the [EULA](EULA.md) for usage terms.
+
 If you hit a bug, installation problem, or update issue, open an issue in this repository:
 
 https://github.com/ranyitz/snapdraft/issues
