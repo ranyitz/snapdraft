@@ -1,20 +1,103 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Snapdraft — Polish messages without leaving the app you’re in</title>
-    <meta name="description" content="Snapdraft is a local-first macOS drafting overlay. Draft, rewrite, and dictate on top of Slack, Gmail, WhatsApp, Zoom, and any other Mac app — with a local model by default, or your own ChatGPT account.">
-    <meta name="theme-color" content="#faf6ee" media="(prefers-color-scheme: light)">
-    <meta name="theme-color" content="#14110d" media="(prefers-color-scheme: dark)">
-    <meta property="og:type" content="website">
-    <meta property="og:title" content="Snapdraft — Polish messages without leaving the app you’re in">
-    <meta property="og:description" content="A local-first macOS drafting overlay. Draft, rewrite, and dictate on top of any Mac app — with a local model by default, or your own ChatGPT account.">
-    <meta property="og:url" content="https://ranyitz.github.io/snapdraft/">
-    <meta property="og:image" content="https://ranyitz.github.io/snapdraft/assets/snapdraft-compose-preview.png">
-    <meta name="twitter:card" content="summary_large_image">
-    <link rel="icon" type="image/png" href="assets/snapdraft-icon.png">
-    <link rel="apple-touch-icon" href="assets/snapdraft-icon.png">
+    <meta
+      name="description"
+      content="Snapdraft is a local-first macOS drafting overlay. Draft, rewrite, and dictate on top of Slack, Gmail, WhatsApp, Zoom, and any other Mac app — with a local model by default, or your own ChatGPT account."
+    />
+    <meta
+      name="theme-color"
+      content="#faf6ee"
+      media="(prefers-color-scheme: light)"
+    />
+    <meta
+      name="theme-color"
+      content="#14110d"
+      media="(prefers-color-scheme: dark)"
+    />
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:title"
+      content="Snapdraft — Polish messages without leaving the app you’re in"
+    />
+    <meta
+      property="og:description"
+      content="A local-first macOS drafting overlay. Draft, rewrite, and dictate on top of any Mac app — with a local model by default, or your own ChatGPT account."
+    />
+    <meta property="og:url" content="https://ranyitz.github.io/snapdraft/" />
+    <meta
+      property="og:image"
+      content="https://ranyitz.github.io/snapdraft/assets/snapdraft-compose-preview.png"
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="icon" type="image/png" href="assets/snapdraft-icon.png" />
+    <link rel="apple-touch-icon" href="assets/snapdraft-icon.png" />
+    <script>
+      !(function (t, e) {
+        var o, n, p, r;
+        e.__SV ||
+          ((window.posthog = e),
+          (e._i = []),
+          (e.init = function (i, s, a) {
+            function g(t, e) {
+              var o = e.split(".");
+              (2 == o.length && ((t = t[o[0]]), (e = o[1])),
+                (t[e] = function () {
+                  t.push([e].concat(Array.prototype.slice.call(arguments, 0)));
+                }));
+            }
+            (((p = t.createElement("script")).type = "text/javascript"),
+              (p.crossOrigin = "anonymous"),
+              (p.async = !0),
+              (p.src =
+                s.api_host.replace(".i.posthog.com", "-assets.i.posthog.com") +
+                "/static/array.js"),
+              (r = t.getElementsByTagName("script")[0]).parentNode.insertBefore(
+                p,
+                r,
+              ));
+            var u = e;
+            for (
+              void 0 !== a ? (u = e[a] = []) : (a = "posthog"),
+                u.people = u.people || [],
+                u.toString = function (t) {
+                  var e = "posthog";
+                  return (
+                    "posthog" !== a && (e += "." + a),
+                    t || (e += " (stub)"),
+                    e
+                  );
+                },
+                u.people.toString = function () {
+                  return u.toString(1) + ".people (stub)";
+                },
+                o =
+                  "init capture register register_once register_for_session unregister unregister_for_session getFeatureFlag getFeatureFlagResult isFeatureEnabled reloadFeatureFlags updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures on onFeatureFlags onSessionId getSurveys getActiveMatchingSurveys renderSurvey canRenderSurvey getNextSurveyStep identify setPersonProperties group resetGroups setPersonPropertiesForFlags resetPersonPropertiesForFlags setGroupPropertiesForFlags resetGroupPropertiesForFlags reset get_distinct_id getGroups get_session_id get_session_replay_url alias set_config startSessionRecording stopSessionRecording sessionRecordingStarted captureException loadToolbar get_property getSessionProperty createPersonProfile opt_in_capturing opt_out_capturing has_opted_in_capturing has_opted_out_capturing clear_opt_in_out_capturing debug".split(
+                    " ",
+                  ),
+                n = 0;
+              n < o.length;
+              n++
+            )
+              g(u, o[n]);
+            e._i.push([i, s, a]);
+          }),
+          (e.__SV = 1));
+      })(document, window.posthog || []);
+      if (!/localhost|127\.0\.0\.1/.test(location.host)) {
+        posthog.init("phc_nPQeE5EkvxvcfYfJXVrbPumtNJGnHJdSxsWW5bgomK7S", {
+          api_host: "https://eu.i.posthog.com",
+          defaults: "2026-05-30",
+          person_profiles: "identified_only",
+          persistence: "memory",
+          autocapture: false,
+          disable_session_recording: true,
+        });
+      }
+    </script>
     <style>
       :root {
         color-scheme: light dark;
@@ -55,7 +138,9 @@
 
       body {
         margin: 0;
-        font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, sans-serif;
+        font-family:
+          -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto,
+          sans-serif;
         font-size: 17px;
         line-height: 1.55;
         color: var(--text);
@@ -100,7 +185,9 @@
         font-weight: 600;
         font-size: 15px;
         text-decoration: none;
-        transition: transform 0.08s ease, opacity 0.15s ease;
+        transition:
+          transform 0.08s ease,
+          opacity 0.15s ease;
       }
 
       .button:hover {
@@ -148,14 +235,19 @@
         );
         background-size: 220% 100%;
         -webkit-background-clip: text;
-                background-clip: text;
+        background-clip: text;
         color: transparent;
         animation: hl-shift 9s ease-in-out infinite;
       }
 
       @keyframes hl-shift {
-        0%, 100% { background-position: 0% 50%; }
-        50%      { background-position: 100% 50%; }
+        0%,
+        100% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
       }
 
       .lede {
@@ -354,9 +446,16 @@
       }
 
       @media (max-width: 880px) {
-        .why-layout { grid-template-columns: 1fr; gap: 40px; }
-        .why-intro { position: static; }
-        .why-list { grid-template-columns: 1fr; }
+        .why-layout {
+          grid-template-columns: 1fr;
+          gap: 40px;
+        }
+        .why-intro {
+          position: static;
+        }
+        .why-list {
+          grid-template-columns: 1fr;
+        }
         .why-list li,
         .why-list li:nth-child(2n) {
           padding: 22px 0;
@@ -483,7 +582,9 @@
           grid-template-columns: 1fr;
           gap: 8px;
         }
-        .flow::before { display: none; }
+        .flow::before {
+          display: none;
+        }
         .flow-step {
           padding: 8px 0;
           text-align: left;
@@ -492,11 +593,23 @@
           column-gap: 18px;
           row-gap: 4px;
         }
-        .flow-num { margin: 0; grid-row: span 3; }
-        .flow-step > p { margin: 0; max-width: none; }
-        .flow-step .keys { margin-top: 6px; }
-        .rewrite-preview { margin-top: 36px; }
-        .rewrite-preview img { border-radius: 12px; }
+        .flow-num {
+          margin: 0;
+          grid-row: span 3;
+        }
+        .flow-step > p {
+          margin: 0;
+          max-width: none;
+        }
+        .flow-step .keys {
+          margin-top: 6px;
+        }
+        .rewrite-preview {
+          margin-top: 36px;
+        }
+        .rewrite-preview img {
+          border-radius: 12px;
+        }
       }
 
       /* Privacy — bold typographic block */
@@ -504,12 +617,11 @@
         position: relative;
         padding: clamp(36px, 6vw, 72px);
         border-radius: 22px;
-        background:
-          linear-gradient(
-            135deg,
-            color-mix(in srgb, var(--accent) 5%, var(--bg-elev)),
-            var(--bg-elev)
-          );
+        background: linear-gradient(
+          135deg,
+          color-mix(in srgb, var(--accent) 5%, var(--bg-elev)),
+          var(--bg-elev)
+        );
         border: 1px solid var(--border);
         overflow: hidden;
       }
@@ -521,8 +633,11 @@
         bottom: -120px;
         width: 460px;
         height: 460px;
-        background:
-          radial-gradient(circle, color-mix(in srgb, var(--accent) 22%, transparent), transparent 70%);
+        background: radial-gradient(
+          circle,
+          color-mix(in srgb, var(--accent) 22%, transparent),
+          transparent 70%
+        );
         border-radius: 50%;
         pointer-events: none;
       }
@@ -534,8 +649,11 @@
         top: -80px;
         width: 280px;
         height: 280px;
-        background:
-          radial-gradient(circle, color-mix(in srgb, var(--accent-2) 16%, transparent), transparent 70%);
+        background: radial-gradient(
+          circle,
+          color-mix(in srgb, var(--accent-2) 16%, transparent),
+          transparent 70%
+        );
         border-radius: 50%;
         pointer-events: none;
       }
@@ -586,12 +704,16 @@
         height: 16px;
         border-radius: 50%;
         background: var(--accent);
-        mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M3 8.5l3 3 7-7' fill='none' stroke='black' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/></svg>") center/contain no-repeat;
-        -webkit-mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M3 8.5l3 3 7-7' fill='none' stroke='black' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/></svg>") center/contain no-repeat;
+        mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M3 8.5l3 3 7-7' fill='none' stroke='black' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/></svg>")
+          center/contain no-repeat;
+        -webkit-mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M3 8.5l3 3 7-7' fill='none' stroke='black' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/></svg>")
+          center/contain no-repeat;
       }
 
       @media (max-width: 600px) {
-        .privacy-list { grid-template-columns: 1fr; }
+        .privacy-list {
+          grid-template-columns: 1fr;
+        }
       }
 
       /* Keycaps */
@@ -603,7 +725,8 @@
         border-bottom-width: 2px;
         border-radius: 6px;
         background: var(--bg-soft);
-        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+        font-family:
+          ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
         font-size: 12px;
         font-weight: 600;
         color: var(--text);
@@ -655,16 +778,22 @@
           transparent 60%,
           color-mix(in srgb, var(--accent-2) 32%, transparent)
         );
-        -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-                mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+        -webkit-mask:
+          linear-gradient(#000 0 0) content-box,
+          linear-gradient(#000 0 0);
+        mask:
+          linear-gradient(#000 0 0) content-box,
+          linear-gradient(#000 0 0);
         -webkit-mask-composite: xor;
-                mask-composite: exclude;
+        mask-composite: exclude;
         opacity: 0;
         transition: opacity 0.3s ease;
         pointer-events: none;
       }
 
-      .feature:hover::before { opacity: 1; }
+      .feature:hover::before {
+        opacity: 1;
+      }
 
       .feature .icon {
         display: inline-flex;
@@ -674,12 +803,11 @@
         height: 38px;
         margin-bottom: 16px;
         border-radius: 10px;
-        background:
-          linear-gradient(
-            135deg,
-            color-mix(in srgb, var(--accent) 18%, transparent),
-            color-mix(in srgb, var(--accent-2) 18%, transparent)
-          );
+        background: linear-gradient(
+          135deg,
+          color-mix(in srgb, var(--accent) 18%, transparent),
+          color-mix(in srgb, var(--accent-2) 18%, transparent)
+        );
         color: var(--accent);
       }
 
@@ -723,7 +851,10 @@
         color: var(--text-muted);
         white-space: nowrap;
         letter-spacing: -0.005em;
-        transition: transform 0.15s ease, background 0.2s ease, color 0.2s ease;
+        transition:
+          transform 0.15s ease,
+          background 0.2s ease,
+          color 0.2s ease;
       }
 
       .chip:hover {
@@ -731,13 +862,15 @@
       }
 
       .chip.active {
-        background:
-          linear-gradient(135deg,
-            var(--accent),
-            color-mix(in srgb, var(--accent) 70%, #6a52d6));
+        background: linear-gradient(
+          135deg,
+          var(--accent),
+          color-mix(in srgb, var(--accent) 70%, #6a52d6)
+        );
         color: var(--accent-contrast);
         border-color: transparent;
-        box-shadow: 0 6px 18px color-mix(in srgb, var(--accent) 32%, transparent);
+        box-shadow: 0 6px 18px
+          color-mix(in srgb, var(--accent) 32%, transparent);
       }
 
       .chip.add {
@@ -770,12 +903,20 @@
         color: var(--accent);
       }
 
-      .md-sample em { font-style: italic; }
-      .md-sample strong { font-weight: 700; }
+      .md-sample em {
+        font-style: italic;
+      }
+      .md-sample strong {
+        font-weight: 700;
+      }
 
       .md-sample a {
         text-decoration: underline;
-        text-decoration-color: color-mix(in srgb, var(--accent) 50%, transparent);
+        text-decoration-color: color-mix(
+          in srgb,
+          var(--accent) 50%,
+          transparent
+        );
         text-underline-offset: 2px;
         color: var(--accent);
       }
@@ -835,26 +976,65 @@
       .soundwave span {
         display: block;
         width: 5px;
-        background: linear-gradient(to top, var(--accent), color-mix(in srgb, var(--accent) 50%, var(--accent-2)));
+        background: linear-gradient(
+          to top,
+          var(--accent),
+          color-mix(in srgb, var(--accent) 50%, var(--accent-2))
+        );
         border-radius: 3px;
         transform-origin: bottom;
         animation: soundwave 1.4s ease-in-out infinite;
       }
 
-      .soundwave span:nth-child(1)  { height: 30%; animation-delay: 0.00s; }
-      .soundwave span:nth-child(2)  { height: 65%; animation-delay: 0.10s; }
-      .soundwave span:nth-child(3)  { height: 90%; animation-delay: 0.20s; }
-      .soundwave span:nth-child(4)  { height: 50%; animation-delay: 0.30s; }
-      .soundwave span:nth-child(5)  { height: 80%; animation-delay: 0.40s; }
-      .soundwave span:nth-child(6)  { height: 95%; animation-delay: 0.50s; }
-      .soundwave span:nth-child(7)  { height: 55%; animation-delay: 0.60s; }
-      .soundwave span:nth-child(8)  { height: 75%; animation-delay: 0.70s; }
-      .soundwave span:nth-child(9)  { height: 40%; animation-delay: 0.80s; }
-      .soundwave span:nth-child(10) { height: 60%; animation-delay: 0.90s; }
+      .soundwave span:nth-child(1) {
+        height: 30%;
+        animation-delay: 0s;
+      }
+      .soundwave span:nth-child(2) {
+        height: 65%;
+        animation-delay: 0.1s;
+      }
+      .soundwave span:nth-child(3) {
+        height: 90%;
+        animation-delay: 0.2s;
+      }
+      .soundwave span:nth-child(4) {
+        height: 50%;
+        animation-delay: 0.3s;
+      }
+      .soundwave span:nth-child(5) {
+        height: 80%;
+        animation-delay: 0.4s;
+      }
+      .soundwave span:nth-child(6) {
+        height: 95%;
+        animation-delay: 0.5s;
+      }
+      .soundwave span:nth-child(7) {
+        height: 55%;
+        animation-delay: 0.6s;
+      }
+      .soundwave span:nth-child(8) {
+        height: 75%;
+        animation-delay: 0.7s;
+      }
+      .soundwave span:nth-child(9) {
+        height: 40%;
+        animation-delay: 0.8s;
+      }
+      .soundwave span:nth-child(10) {
+        height: 60%;
+        animation-delay: 0.9s;
+      }
 
       @keyframes soundwave {
-        0%, 100% { transform: scaleY(1); }
-        50%      { transform: scaleY(0.35); }
+        0%,
+        100% {
+          transform: scaleY(1);
+        }
+        50% {
+          transform: scaleY(0.35);
+        }
       }
 
       /* Draft stack (Draft history) */
@@ -898,7 +1078,9 @@
         background: color-mix(in srgb, var(--accent) 6%, var(--bg));
       }
 
-      .stack-row.now::before { background: var(--accent); }
+      .stack-row.now::before {
+        background: var(--accent);
+      }
 
       .stack-row.now::after {
         background: color-mix(in srgb, var(--accent) 32%, transparent);
@@ -1049,10 +1231,26 @@
         z-index: 0;
         pointer-events: none;
         background:
-          radial-gradient(36% 36% at 22% 28%, color-mix(in srgb, var(--accent) 42%, transparent), transparent 70%),
-          radial-gradient(40% 40% at 70% 36%, color-mix(in srgb, #d68a5e 36%, transparent), transparent 70%),
-          radial-gradient(32% 32% at 50% 76%, color-mix(in srgb, #e9a45e 30%, transparent), transparent 70%),
-          radial-gradient(34% 34% at 86% 64%, color-mix(in srgb, #8a6bd9 26%, transparent), transparent 70%);
+          radial-gradient(
+            36% 36% at 22% 28%,
+            color-mix(in srgb, var(--accent) 42%, transparent),
+            transparent 70%
+          ),
+          radial-gradient(
+            40% 40% at 70% 36%,
+            color-mix(in srgb, #d68a5e 36%, transparent),
+            transparent 70%
+          ),
+          radial-gradient(
+            32% 32% at 50% 76%,
+            color-mix(in srgb, #e9a45e 30%, transparent),
+            transparent 70%
+          ),
+          radial-gradient(
+            34% 34% at 86% 64%,
+            color-mix(in srgb, #8a6bd9 26%, transparent),
+            transparent 70%
+          );
         filter: blur(86px) saturate(108%);
         opacity: 0.85;
         animation: halo-drift 22s ease-in-out infinite alternate;
@@ -1066,8 +1264,12 @@
       }
 
       @keyframes halo-drift {
-        0%   { transform: translate3d(-3%, -2%, 0) scale(1) rotate(-2deg); }
-        100% { transform: translate3d(3%, 4%, 0) scale(1.12) rotate(2deg); }
+        0% {
+          transform: translate3d(-3%, -2%, 0) scale(1) rotate(-2deg);
+        }
+        100% {
+          transform: translate3d(3%, 4%, 0) scale(1.12) rotate(2deg);
+        }
       }
 
       /* Subtle dot grid behind hero */
@@ -1083,8 +1285,16 @@
           transparent 1.5px
         );
         background-size: 28px 28px;
-        -webkit-mask-image: radial-gradient(ellipse at center top, #000 0%, transparent 60%);
-                mask-image: radial-gradient(ellipse at center top, #000 0%, transparent 60%);
+        -webkit-mask-image: radial-gradient(
+          ellipse at center top,
+          #000 0%,
+          transparent 60%
+        );
+        mask-image: radial-gradient(
+          ellipse at center top,
+          #000 0%,
+          transparent 60%
+        );
         opacity: 0.6;
       }
 
@@ -1096,22 +1306,41 @@
       .hero-image-wrap {
         animation: fade-up 0.75s cubic-bezier(0.2, 0.7, 0, 1) both;
       }
-      .hero h1            { animation-delay: 0.10s; }
-      .hero .lede         { animation-delay: 0.20s; }
-      .hero .actions      { animation-delay: 0.28s; }
-      .hero .meta         { animation-delay: 0.34s; }
-      .hero-image-wrap    { animation-delay: 0.44s; animation-duration: 0.9s; }
+      .hero h1 {
+        animation-delay: 0.1s;
+      }
+      .hero .lede {
+        animation-delay: 0.2s;
+      }
+      .hero .actions {
+        animation-delay: 0.28s;
+      }
+      .hero .meta {
+        animation-delay: 0.34s;
+      }
+      .hero-image-wrap {
+        animation-delay: 0.44s;
+        animation-duration: 0.9s;
+      }
 
       @keyframes fade-up {
-        from { opacity: 0; transform: translateY(10px); }
-        to   { opacity: 1; transform: translateY(0); }
+        from {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
       }
 
       /* Scroll reveal */
       .reveal {
         opacity: 0;
         transform: translateY(16px);
-        transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.2, 0.7, 0, 1);
+        transition:
+          opacity 0.7s ease,
+          transform 0.7s cubic-bezier(0.2, 0.7, 0, 1);
       }
 
       .reveal.in {
@@ -1122,7 +1351,9 @@
       .staggered > * {
         opacity: 0;
         transform: translateY(16px);
-        transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.2, 0.7, 0, 1);
+        transition:
+          opacity 0.6s ease,
+          transform 0.6s cubic-bezier(0.2, 0.7, 0, 1);
       }
 
       .staggered.in > * {
@@ -1130,14 +1361,30 @@
         transform: none;
       }
 
-      .staggered.in > *:nth-child(1) { transition-delay: 0ms; }
-      .staggered.in > *:nth-child(2) { transition-delay: 70ms; }
-      .staggered.in > *:nth-child(3) { transition-delay: 140ms; }
-      .staggered.in > *:nth-child(4) { transition-delay: 210ms; }
-      .staggered.in > *:nth-child(5) { transition-delay: 280ms; }
-      .staggered.in > *:nth-child(6) { transition-delay: 350ms; }
-      .staggered.in > *:nth-child(7) { transition-delay: 420ms; }
-      .staggered.in > *:nth-child(8) { transition-delay: 490ms; }
+      .staggered.in > *:nth-child(1) {
+        transition-delay: 0ms;
+      }
+      .staggered.in > *:nth-child(2) {
+        transition-delay: 70ms;
+      }
+      .staggered.in > *:nth-child(3) {
+        transition-delay: 140ms;
+      }
+      .staggered.in > *:nth-child(4) {
+        transition-delay: 210ms;
+      }
+      .staggered.in > *:nth-child(5) {
+        transition-delay: 280ms;
+      }
+      .staggered.in > *:nth-child(6) {
+        transition-delay: 350ms;
+      }
+      .staggered.in > *:nth-child(7) {
+        transition-delay: 420ms;
+      }
+      .staggered.in > *:nth-child(8) {
+        transition-delay: 490ms;
+      }
 
       /* Card transitions — no lift, cards aren't clickable */
       .feature {
@@ -1156,10 +1403,11 @@
 
       /* Primary button polish */
       .button:not(.secondary):not(.ghost) {
-        background:
-          linear-gradient(135deg,
-            var(--accent),
-            color-mix(in srgb, var(--accent) 70%, #6a52d6));
+        background: linear-gradient(
+          135deg,
+          var(--accent),
+          color-mix(in srgb, var(--accent) 70%, #6a52d6)
+        );
         border-color: transparent;
         box-shadow:
           0 1px 0 rgb(255 255 255 / 12%) inset,
@@ -1185,7 +1433,9 @@
       }
 
       .kbd {
-        transition: transform 0.15s ease, border-bottom-width 0.15s ease;
+        transition:
+          transform 0.15s ease,
+          border-bottom-width 0.15s ease;
       }
 
       /* Marquee */
@@ -1195,8 +1445,20 @@
         position: relative;
         overflow: hidden;
         padding: 4px 0;
-        -webkit-mask-image: linear-gradient(to right, transparent, #000 12%, #000 88%, transparent);
-                mask-image: linear-gradient(to right, transparent, #000 12%, #000 88%, transparent);
+        -webkit-mask-image: linear-gradient(
+          to right,
+          transparent,
+          #000 12%,
+          #000 88%,
+          transparent
+        );
+        mask-image: linear-gradient(
+          to right,
+          transparent,
+          #000 12%,
+          #000 88%,
+          transparent
+        );
       }
 
       .marquee-label {
@@ -1238,8 +1500,12 @@
       }
 
       @keyframes marquee-scroll {
-        from { transform: translateX(0); }
-        to   { transform: translateX(calc(-50% - 20px)); }
+        from {
+          transform: translateX(0);
+        }
+        to {
+          transform: translateX(calc(-50% - 20px));
+        }
       }
 
       /* Reduced motion */
@@ -1257,7 +1523,9 @@
           opacity: 1 !important;
           transform: none !important;
         }
-        .hero-halo { display: none; }
+        .hero-halo {
+          display: none;
+        }
       }
     </style>
   </head>
@@ -1269,16 +1537,33 @@
       <section class="hero flush" aria-labelledby="hero-title">
         <div class="hero-halo" aria-hidden="true"></div>
         <div class="container">
-          <h1 id="hero-title"><span class="hl-grad">Polish messages</span> without&nbsp;leaving<br class="brk"> the&nbsp;app you’re&nbsp;in.</h1>
+          <h1 id="hero-title">
+            <span class="hl-grad">Polish messages</span> without&nbsp;leaving<br
+              class="brk"
+            />
+            the&nbsp;app you’re&nbsp;in.
+          </h1>
           <p class="lede">
-            Snapdraft opens a local writing overlay on top of Slack, Gmail, WhatsApp, Zoom, and any other Mac app — so you can draft, rewrite, dictate, preserve formatting, and copy back without switching to a separate AI chat.
+            Snapdraft opens a local writing overlay on top of Slack, Gmail,
+            WhatsApp, Zoom, and any other Mac app — so you can draft, rewrite,
+            dictate, preserve formatting, and copy back without switching to a
+            separate AI chat.
           </p>
           <div class="actions">
-            <a class="button" href="https://github.com/ranyitz/snapdraft/releases/latest/download/Snapdraft.dmg">Download for macOS</a>
+            <a
+              class="button"
+              href="https://github.com/ranyitz/snapdraft/releases/latest/download/Snapdraft.dmg"
+              data-download-location="hero"
+              >Download for macOS</a
+            >
           </div>
           <p class="meta">Requires macOS 13.3 or later · Apple silicon</p>
           <div class="hero-image-wrap">
-            <img class="hero-image" src="assets/snapdraft-compose-preview.png" alt="The Snapdraft overlay floating above another macOS app, showing draft text and rewrite options.">
+            <img
+              class="hero-image"
+              src="assets/snapdraft-compose-preview.png"
+              alt="The Snapdraft overlay floating above another macOS app, showing draft text and rewrite options."
+            />
           </div>
 
           <div class="marquee" aria-hidden="true">
@@ -1313,30 +1598,52 @@
       <section id="why" aria-labelledby="why-title">
         <div class="container why-layout">
           <div class="why-intro reveal">
-            <span class="section-eyebrow"><span class="num">01</span>The problem</span>
-            <h2 id="why-title">Everyday writing shouldn’t mean a trip to a chatbot.</h2>
-            <p>Writing happens across Slack, WhatsApp, Gmail, comments, support tools, and a dozen quick message boxes. For each small rewrite, opening a separate AI chat adds friction, breaks formatting, and scatters your drafts.</p>
+            <span class="section-eyebrow"
+              ><span class="num">01</span>The problem</span
+            >
+            <h2 id="why-title">
+              Everyday writing shouldn’t mean a trip to a chatbot.
+            </h2>
+            <p>
+              Writing happens across Slack, WhatsApp, Gmail, comments, support
+              tools, and a dozen quick message boxes. For each small rewrite,
+              opening a separate AI chat adds friction, breaks formatting, and
+              scatters your drafts.
+            </p>
           </div>
           <ol class="why-list staggered">
             <li>
               <span class="why-num">01</span>
               <h3>Too much context switching</h3>
-              <p>Stop bouncing to ChatGPT or Claude in another tab just to fix a sentence — Snapdraft brings the rewrite to you, and can even use your ChatGPT account.</p>
+              <p>
+                Stop bouncing to ChatGPT or Claude in another tab just to fix a
+                sentence — Snapdraft brings the rewrite to you, and can even use
+                your ChatGPT account.
+              </p>
             </li>
             <li>
               <span class="why-num">02</span>
               <h3>Same intent, again and again</h3>
-              <p>“Make this clearer,” “rewrite as an email” — rewrite modes are reusable, not retyped.</p>
+              <p>
+                “Make this clearer,” “rewrite as an email” — rewrite modes are
+                reusable, not retyped.
+              </p>
             </li>
             <li>
               <span class="why-num">03</span>
               <h3>Formatting gets lost</h3>
-              <p>Copy/paste between chat tools strips bullets, links, bold, and code. Snapdraft preserves it.</p>
+              <p>
+                Copy/paste between chat tools strips bullets, links, bold, and
+                code. Snapdraft preserves it.
+              </p>
             </li>
             <li>
               <span class="why-num">04</span>
               <h3>Drafts go missing</h3>
-              <p>Quick messages are still work. Snapdraft keeps a local history so drafts don’t disappear.</p>
+              <p>
+                Quick messages are still work. Snapdraft keeps a local history
+                so drafts don’t disappear.
+              </p>
             </li>
           </ol>
         </div>
@@ -1346,7 +1653,9 @@
       <section id="how" class="section-how" aria-label="How it works">
         <div class="container">
           <div class="section-head reveal section-head--eyebrow-only">
-            <span class="section-eyebrow"><span class="num">02</span>The flow</span>
+            <span class="section-eyebrow"
+              ><span class="num">02</span>The flow</span
+            >
           </div>
           <ol class="flow staggered">
             <li class="flow-step">
@@ -1354,7 +1663,9 @@
               <h3>Summon</h3>
               <p>Open Snapdraft from anywhere with a global shortcut.</p>
               <p class="keys">
-                <span class="kbd">⌘</span><span class="kbd-sep">+</span><span class="kbd">⇧</span><span class="kbd-sep">+</span><span class="kbd">Space</span>
+                <span class="kbd">⌘</span><span class="kbd-sep">+</span
+                ><span class="kbd">⇧</span><span class="kbd-sep">+</span
+                ><span class="kbd">Space</span>
               </p>
             </li>
             <li class="flow-step">
@@ -1365,22 +1676,34 @@
             <li class="flow-step">
               <div class="flow-num">3</div>
               <h3>Rewrite</h3>
-              <p>Run a mode like <em>Fix errors</em>, <em>Improve writing</em>, <em>Email</em>, or <em>Message</em>.</p>
+              <p>
+                Run a mode like <em>Fix errors</em>, <em>Improve writing</em>,
+                <em>Email</em>, or <em>Message</em>.
+              </p>
               <p class="keys">
-                <span class="kbd">⌘</span><span class="kbd-sep">+</span><span class="kbd">Return</span>
+                <span class="kbd">⌘</span><span class="kbd-sep">+</span
+                ><span class="kbd">Return</span>
               </p>
             </li>
             <li class="flow-step">
               <div class="flow-num">4</div>
               <h3>Copy</h3>
-              <p>Send to your clipboard with formatting preserved, then paste anywhere.</p>
+              <p>
+                Send to your clipboard with formatting preserved, then paste
+                anywhere.
+              </p>
               <p class="keys">
-                <span class="kbd">⌘</span><span class="kbd-sep">+</span><span class="kbd">C</span>
+                <span class="kbd">⌘</span><span class="kbd-sep">+</span
+                ><span class="kbd">C</span>
               </p>
             </li>
           </ol>
           <div class="rewrite-preview reveal">
-            <img src="assets/snapdraft-rewrite-preview.jpeg" alt="Snapdraft showing an original message and a clearer rewritten version ready to copy." loading="lazy">
+            <img
+              src="assets/snapdraft-rewrite-preview.jpeg"
+              alt="Snapdraft showing an original message and a clearer rewritten version ready to copy."
+              loading="lazy"
+            />
           </div>
         </div>
       </section>
@@ -1389,9 +1712,13 @@
       <section id="features" aria-labelledby="features-title">
         <div class="container">
           <div class="section-head reveal">
-            <span class="section-eyebrow"><span class="num">03</span>What’s inside</span>
+            <span class="section-eyebrow"
+              ><span class="num">03</span>What’s inside</span
+            >
             <h2 id="features-title">Built for the writing you actually do.</h2>
-            <p>Short messages and longer paragraphs, across native and web apps.</p>
+            <p>
+              Short messages and longer paragraphs, across native and web apps.
+            </p>
           </div>
           <div class="features staggered">
             <article class="feature">
@@ -1402,7 +1729,10 @@
                 <span class="chip">Message</span>
               </div>
               <h3>Local rewriting</h3>
-              <p>Rewrites run on your Mac through llama.cpp by default. No round-trips, no quotas, no waiting on someone else’s GPU.</p>
+              <p>
+                Rewrites run on your Mac through llama.cpp by default. No
+                round-trips, no quotas, no waiting on someone else’s GPU.
+              </p>
             </article>
             <article class="feature">
               <div class="tile-visual chips" aria-hidden="true">
@@ -1410,18 +1740,29 @@
                 <span class="chip">Your ChatGPT</span>
               </div>
               <h3>Bring your own ChatGPT</h3>
-              <p>Connect your ChatGPT account and rewrite with a frontier model when you want more than the local one. Only the draft you’re rewriting is sent — under your own account.</p>
+              <p>
+                Connect your ChatGPT account and rewrite with a frontier model
+                when you want more than the local one. Only the draft you’re
+                rewriting is sent — under your own account.
+              </p>
             </article>
             <article class="feature">
               <div class="tile-visual md-sample" aria-hidden="true">
-                <p><strong>Bold</strong>, <em>italic</em>, <code>monospace</code>, and <a href="#" onclick="return false;">links</a> all survive.</p>
+                <p>
+                  <strong>Bold</strong>, <em>italic</em>,
+                  <code>monospace</code>, and
+                  <a href="#" onclick="return false;">links</a> all survive.
+                </p>
                 <ul>
                   <li>So do bullet points</li>
                   <li>and the structure around them</li>
                 </ul>
               </div>
               <h3>Markdown &amp; rich text</h3>
-              <p>Bullets, links, bold, italics, code, and paragraphs survive the rewrite and the paste — no rebuilding formatting after the LLM.</p>
+              <p>
+                Bullets, links, bold, italics, code, and paragraphs survive the
+                rewrite and the paste — no rebuilding formatting after the LLM.
+              </p>
             </article>
             <article class="feature">
               <div class="tile-visual chips" aria-hidden="true">
@@ -1430,15 +1771,23 @@
                 <span class="chip add">+ New mode</span>
               </div>
               <h3>Custom rewrite modes</h3>
-              <p>Use the built-ins — Fix errors, Improve writing, Email, Message — or create, edit, and arrange your own to match the way you actually write.</p>
+              <p>
+                Use the built-ins — Fix errors, Improve writing, Email, Message
+                — or create, edit, and arrange your own to match the way you
+                actually write.
+              </p>
             </article>
             <article class="feature">
               <div class="tile-visual soundwave" aria-hidden="true">
-                <span></span><span></span><span></span><span></span><span></span>
-                <span></span><span></span><span></span><span></span><span></span>
+                <span></span><span></span><span></span><span></span
+                ><span></span> <span></span><span></span><span></span
+                ><span></span><span></span>
               </div>
               <h3>Local dictation</h3>
-              <p>Speak even where the current app has no mic input. Transcription runs locally through whisper.cpp.</p>
+              <p>
+                Speak even where the current app has no mic input. Transcription
+                runs locally through whisper.cpp.
+              </p>
             </article>
             <article class="feature">
               <div class="tile-visual stack" aria-hidden="true">
@@ -1447,7 +1796,10 @@
                 <div class="stack-row"></div>
               </div>
               <h3>Draft history</h3>
-              <p>Snapdraft remembers what you were writing, so unfinished drafts don’t disappear between sessions.</p>
+              <p>
+                Snapdraft remembers what you were writing, so unfinished drafts
+                don’t disappear between sessions.
+              </p>
             </article>
             <article class="feature">
               <div class="tile-visual keycaps" aria-hidden="true">
@@ -1468,7 +1820,10 @@
                 </div>
               </div>
               <h3>Keyboard-first</h3>
-              <p>Summon, draft, rewrite, and copy without ever reaching for the trackpad.</p>
+              <p>
+                Summon, draft, rewrite, and copy without ever reaching for the
+                trackpad.
+              </p>
             </article>
           </div>
         </div>
@@ -1478,17 +1833,34 @@
       <section id="privacy" aria-labelledby="privacy-title">
         <div class="container">
           <div class="privacy-block reveal">
-            <span class="section-eyebrow"><span class="num">04</span>Privacy</span>
+            <span class="section-eyebrow"
+              ><span class="num">04</span>Privacy</span
+            >
             <h2 id="privacy-title">Your drafts stay on&nbsp;your Mac.</h2>
-            <p class="privacy-lede">Snapdraft is local-first. Rewrites use a local model, transcription uses a local speech model, and your draft history lives on your machine — not on someone else’s server. The only cloud path is optional: your own ChatGPT account, if you connect one.</p>
+            <p class="privacy-lede">
+              Snapdraft is local-first. Rewrites use a local model,
+              transcription uses a local speech model, and your draft history
+              lives on your machine — not on someone else’s server. The only
+              cloud path is optional: your own ChatGPT account, if you connect
+              one.
+            </p>
             <ul class="privacy-list">
               <li>Rewriting runs locally through llama.cpp.</li>
               <li>Transcription runs locally through whisper.cpp.</li>
               <li>Draft history is stored on your Mac.</li>
               <li>Models download on first use and are cached locally.</li>
-              <li>Optional ChatGPT rewrites send only the draft you’re rewriting — under your own account, never your history or clipboard.</li>
+              <li>
+                Optional ChatGPT rewrites send only the draft you’re rewriting —
+                under your own account, never your history or clipboard.
+              </li>
             </ul>
-            <p>Read the full <a href="https://github.com/ranyitz/snapdraft/blob/main/PRIVACY.md">privacy policy</a>.</p>
+            <p>
+              Read the full
+              <a
+                href="https://github.com/ranyitz/snapdraft/blob/main/PRIVACY.md"
+                >privacy policy</a
+              >.
+            </p>
           </div>
         </div>
       </section>
@@ -1497,23 +1869,50 @@
       <section id="install" aria-labelledby="install-title">
         <div class="container">
           <div class="section-head reveal">
-            <span class="section-eyebrow"><span class="num">05</span>Install</span>
+            <span class="section-eyebrow"
+              ><span class="num">05</span>Install</span
+            >
             <h2 id="install-title">Get Snapdraft.</h2>
           </div>
           <div class="install-card reveal">
-            <div class="actions" style="margin: 0; justify-content: flex-start;">
-              <a class="button" href="https://github.com/ranyitz/snapdraft/releases/latest/download/Snapdraft.dmg">Download latest DMG</a>
-              <a class="button ghost" href="https://github.com/ranyitz/snapdraft/releases">All releases</a>
+            <div class="actions" style="margin: 0; justify-content: flex-start">
+              <a
+                class="button"
+                href="https://github.com/ranyitz/snapdraft/releases/latest/download/Snapdraft.dmg"
+                data-download-location="install"
+                >Download latest DMG</a
+              >
+              <a
+                class="button ghost"
+                href="https://github.com/ranyitz/snapdraft/releases"
+                >All releases</a
+              >
             </div>
             <ol>
               <li>Download the latest <code>Snapdraft.dmg</code>.</li>
-              <li>Open the DMG and drag <strong>Snapdraft</strong> into <strong>Applications</strong>.</li>
+              <li>
+                Open the DMG and drag <strong>Snapdraft</strong> into
+                <strong>Applications</strong>.
+              </li>
               <li>Launch Snapdraft from <code>Applications</code>.</li>
-              <li>Press <span class="kbd">⌘</span><span class="kbd-sep">+</span><span class="kbd">⇧</span><span class="kbd-sep">+</span><span class="kbd">Space</span> to open the drafting overlay.</li>
+              <li>
+                Press <span class="kbd">⌘</span><span class="kbd-sep">+</span
+                ><span class="kbd">⇧</span><span class="kbd-sep">+</span
+                ><span class="kbd">Space</span> to open the drafting overlay.
+              </li>
             </ol>
             <div class="install-meta">
-              <p style="margin: 0;">Requires macOS 13.3 or later and Apple silicon. Local rewriting runs best with 16&nbsp;GB of memory or more — on 8&nbsp;GB Macs, connecting your ChatGPT account is the smoother option.</p>
-              <p style="margin: 0;">Hitting trouble? <a href="https://github.com/ranyitz/snapdraft/issues">Open an issue on GitHub</a>.</p>
+              <p style="margin: 0">
+                Requires macOS 13.3 or later and Apple silicon. Local rewriting
+                runs best with 16&nbsp;GB of memory or more — on 8&nbsp;GB Macs,
+                connecting your ChatGPT account is the smoother option.
+              </p>
+              <p style="margin: 0">
+                Hitting trouble?
+                <a href="https://github.com/ranyitz/snapdraft/issues"
+                  >Open an issue on GitHub</a
+                >.
+              </p>
             </div>
           </div>
         </div>
@@ -1523,37 +1922,78 @@
     <footer class="site">
       <div class="container footer-row">
         <div class="footer-brand">
-          <img class="footer-icon" src="assets/snapdraft-icon.png" alt="" aria-hidden="true" width="36" height="36">
+          <img
+            class="footer-icon"
+            src="assets/snapdraft-icon.png"
+            alt=""
+            aria-hidden="true"
+            width="36"
+            height="36"
+          />
           <div>
-            <strong style="color: var(--text);">Snapdraft</strong> — a local-first macOS drafting overlay.
+            <strong style="color: var(--text)">Snapdraft</strong> — a
+            local-first macOS drafting overlay.
           </div>
         </div>
         <div class="footer-links">
           <a href="https://github.com/ranyitz/snapdraft">GitHub</a>
           <a href="https://github.com/ranyitz/snapdraft/issues">Issues</a>
           <a href="https://github.com/ranyitz/snapdraft/releases">Releases</a>
-          <a href="https://github.com/ranyitz/snapdraft/blob/main/PRIVACY.md">Privacy</a>
-          <a href="https://github.com/ranyitz/snapdraft/blob/main/EULA.md">License</a>
+          <a href="https://github.com/ranyitz/snapdraft/blob/main/PRIVACY.md"
+            >Privacy</a
+          >
+          <a href="https://github.com/ranyitz/snapdraft/blob/main/EULA.md"
+            >License</a
+          >
         </div>
       </div>
     </footer>
 
     <script>
       (function () {
-        var els = document.querySelectorAll('.reveal, .staggered');
-        if (!('IntersectionObserver' in window)) {
-          els.forEach(function (el) { el.classList.add('in'); });
+        var els = document.querySelectorAll(".reveal, .staggered");
+        if (!("IntersectionObserver" in window)) {
+          els.forEach(function (el) {
+            el.classList.add("in");
+          });
           return;
         }
-        var io = new IntersectionObserver(function (entries) {
-          entries.forEach(function (entry) {
-            if (entry.isIntersecting) {
-              entry.target.classList.add('in');
-              io.unobserve(entry.target);
-            }
+        var io = new IntersectionObserver(
+          function (entries) {
+            entries.forEach(function (entry) {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("in");
+                io.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.12, rootMargin: "0px 0px -8% 0px" },
+        );
+        els.forEach(function (el) {
+          io.observe(el);
+        });
+      })();
+
+      (function () {
+        document
+          .querySelectorAll('a[href$="Snapdraft.dmg"]')
+          .forEach(function (link) {
+            link.addEventListener("click", function () {
+              if (
+                !window.posthog ||
+                typeof window.posthog.capture !== "function"
+              )
+                return;
+              posthog.capture(
+                "download_clicked",
+                {
+                  location:
+                    link.getAttribute("data-download-location") || "unknown",
+                },
+                { transport: "sendBeacon" },
+              );
+            });
           });
-        }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
-        els.forEach(function (el) { io.observe(el); });
       })();
     </script>
   </body>
