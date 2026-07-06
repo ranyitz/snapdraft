@@ -1,6 +1,6 @@
 # Snapdraft Privacy Policy
 
-**Last updated: July 3, 2026**
+**Last updated: July 6, 2026**
 
 Snapdraft is a local-first writing assistant for macOS. The short version: your writing stays on your Mac unless you explicitly send it somewhere. Snapdraft has no servers of its own, and your drafts are never sent to us.
 
@@ -66,13 +66,17 @@ Note that draft history is plaintext on disk — it is protected by your macOS u
 
 - **Microphone:** requested via the standard macOS permission prompt, and only used when you start dictation (`Ctrl + M`). You can revoke it any time in System Settings → Privacy & Security → Microphone.
 
+## The Snapdraft website
+
+The Snapdraft website ([snapdraft.ranyitz.com](https://snapdraft.ranyitz.com)) uses PostHog to count page views and clicks on the download button. This runs in cookieless mode: no cookies or other identifiers are stored in your browser, visits are not linked across sessions, and no personal information is collected. There is no session recording and no tracking of anything beyond page views and download-button clicks.
+
 ## Third-party services
 
 | Service | Used for | When |
 | --- | --- | --- |
 | Hugging Face | Downloading local AI models | First use of rewriting or dictation |
 | OpenAI (ChatGPT) | Optional ChatGPT rewrite modes | Only if you connect your account and pick a ChatGPT mode |
-| PostHog | Anonymous usage analytics | On by default; can be turned off in Settings |
+| PostHog | Anonymous usage analytics (app), cookieless page-view and download-click counts (website) | App: on by default; can be turned off in Settings. Website: on page visit |
 | Sentry | Crash and error reports (scrubbed) | On by default; can be turned off in Settings |
 | GitHub | Hosting downloads and update checks | On update checks and downloads |
 
